@@ -190,7 +190,7 @@
     margin-left: 60px
 
 .post-wrap .custom-block .custom-block-title
-    font-weight: 600;
+    font-weight: 600
 
 .post-wrap .custom-block.danger .custom-block-title
     color: #900
@@ -225,7 +225,7 @@
     color: #004085
 
 .post-wrap .custom-block.warning
-    background-color: rgba(255,229,100,.3)
+    background-color: rgba(255,229,100,0.3)
     border-color: #e7c000
     color: #6b5900
 
@@ -236,7 +236,7 @@
 .post-wrap .custom-block.danger p,
 .post-wrap .custom-block.tip p,
 .post-wrap .custom-block.info p,
-.post-wrap .custom-block.warning p,
+.post-wrap .custom-block.warning p
     margin-top: 16px
     line-height: 1.8
 
