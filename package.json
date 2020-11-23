@@ -2,6 +2,7 @@
   "license": "MIT",
   "devDependencies": {
     "@goy/vuepress-plugin-svg-icons": "^4.2.1",
+    "@vuepress/plugin-back-to-top": "^1.7.1",
     "@vuepress/plugin-blog": "^1.9.3",
     "@vuepress/theme-blog": "^2.3.3",
     "autoprefixer": "^9.0",
