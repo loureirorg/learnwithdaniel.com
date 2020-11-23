@@ -1,5 +1,5 @@
 ---
-title: "[SOLVED] Notifications doesn’t work when submitting a form on GravityForm API"
+title: "[SOLVED] Notifications dont't work when submitting a form on GravityForm API"
 date: 2019-09-06
 tags: ['WordPress', 'PHP']
 author: Daniel Loureiro
