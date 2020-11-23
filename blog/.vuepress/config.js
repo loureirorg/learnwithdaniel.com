@@ -6,7 +6,7 @@ module.exports = {
   ],
   postcss: {
     plugins: [
-      require('tailwindcss')(),
+      require('tailwindcss')('./blog/.vuepress/tailwind.config.js'),
       require('autoprefixer'),
     ]
   },

@@ -6,7 +6,7 @@ module.exports = {
   },
   purge: {
     content: [
-      "./.vuepress/theme/**/*.vue",
+      "./theme/**/*.vue",
     ],
   }
 }
