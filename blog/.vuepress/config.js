@@ -2,7 +2,8 @@ module.exports = {
   title: 'Learn with Daniel - A learner diary',
   description: 'A learner diary',
   head: [
-    ['link', { rel: 'icon', href: '/favicon-128.png' }]
+    ['link', { rel: 'icon', href: '/favicon-128.png' }],
+    ['link', { rel: 'manifest', href: '/manifest.json' }],
   ],
   postcss: {
     plugins: [
@@ -31,6 +32,13 @@ module.exports = {
             },
           },
         ],
+      }
+    ],
+    [
+      '@vuepress/pwa',
+      {
+        serviceWorker: true,
+        updatePopup: true
       }
     ],
     ['container', {
