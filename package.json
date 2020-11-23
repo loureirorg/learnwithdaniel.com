@@ -1,0 +1,21 @@
+{
+  "license": "MIT",
+  "devDependencies": {
+    "@goy/vuepress-plugin-svg-icons": "^4.2.1",
+    "@vuepress/plugin-blog": "^1.9.3",
+    "@vuepress/theme-blog": "^2.3.3",
+    "autoprefixer": "^9.0",
+    "dayjs": "^1.9.5",
+    "tailwindcss": "^1.9.6",
+    "tailwindcss-plugins": "^0.3.0",
+    "vuepress": "^1.7.1",
+    "vuepress-plugin-container": "^2.1.5",
+    "vuepress-plugin-nprogress": "^1.1.8",
+    "vuepress-plugin-reading-progress": "^1.0.10",
+    "vuepress-plugin-reading-time": "^0.1.1"
+  },
+  "scripts": {
+    "dev": "vuepress dev blog",
+    "build": "vuepress build blog"
+  }
+}
