@@ -115,7 +115,7 @@ composer global config minimum-stability stable
 
 ---
 
-## Check installed rules
+## 5. Check installed rules
 
 ```bash
 phpcs -i
@@ -124,7 +124,7 @@ phpcs -i
 
 ---
 
-## 4. Get the bin path
+## 6. Get the bin path
 
 ```bash
 which phpcs
@@ -133,14 +133,14 @@ which phpcs
 
 In this example, the bin path is `/home/daniel/.config/composer/vendor/bin/phpcs`.
 
-## 5. In Atom, install `linter` and `linter-php` packages
+## 7. In Atom, install `linter` and `linter-php` packages
 
 In Atom, install packages `linter` and `linter-php` by AtomLinter:
 `Ctrl+Shift+P` > `Install Packages and Themes` > `linter-php`
 
 ![linter-php plugin on Atom](./phplinter.png)
 
-## 6. In Atom, install `linter-phpcs` package
+## 8. In Atom, install `linter-phpcs` package
 
 In Atom, install package `linter-phpcs` by AtomLinter:
 `Ctrl+Shift+P` > `Install Packages and Themes` > `linter-phpcs`
