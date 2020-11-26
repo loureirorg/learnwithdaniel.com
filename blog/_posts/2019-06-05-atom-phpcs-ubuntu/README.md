@@ -159,3 +159,20 @@ Set the bin path and the coding standard you want to use:
 
 And that's it. Now you will see hints / warnings to improve your code :)
 ![PHPCS warning on Atom](./linter-5.png)
+
+---
+
+## Suppressing specific warnings
+
+Just add `phpcs:disable <RULE>` as a comment before your class/method/command:
+
+```php
+// phpcs:disable Squiz.Commenting.FunctionComment.Missing
+function myFunctionWithNoCommentBlock() {
+}
+```
+
+To find the rule name, you can manually run `phpcs` on the command line, with the `-s` argument. Example: 
+```bash
+phpcs -s my-file.php --standard=PSR2
+```
