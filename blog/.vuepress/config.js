@@ -12,8 +12,8 @@ module.exports = {
     ]
   },
   plugins: [
-    'reading-progress',
-    'vuepress-plugin-reading-time',
+    // 'reading-progress',
+    // 'vuepress-plugin-reading-time',
     '@vuepress/back-to-top',
     [
       '@goy/svg-icons', {
