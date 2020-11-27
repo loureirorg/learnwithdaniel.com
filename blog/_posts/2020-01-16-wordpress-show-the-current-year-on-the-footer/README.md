@@ -4,10 +4,14 @@ date: 2019-09-20
 tags: ['WordPress', 'PHP']
 author: Daniel Loureiro
 ---
-A shortcode is a string that will be replaced by dynamic content.
+If you write `[video src="video-source.mp4"]` in a paragraph, it will show a video on the page.
+
+This text fragment, enclosed by brackets `[]`, is a shortcode.
 <!-- more -->
 
-Example: `[video src="video-source.mp4"]`.
+Shortcodes are used to extend our posts and pages. With them, we can add dynamic content provided by plugins inside our paragraphs.
+
+## Example:
 
 In this tutorial, we will create a "Hello World" shortcode. Put these codes in your `functions.php`.
 
