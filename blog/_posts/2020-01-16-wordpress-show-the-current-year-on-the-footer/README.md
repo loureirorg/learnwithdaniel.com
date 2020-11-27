@@ -9,7 +9,7 @@ How do you put a video from your library on an article? Answer: you write `[vide
 WordPress will replace the `[video ...]` string with the actual video from your library. This is an example of shortcode usage. Shortcodes are strings enclosed by brackets `[]`.
 <!-- more -->
 
-Shortcodes extend the editor. With them, you are not limited to Guttember's blocks, nor to text styling only. They allow us to add dynamic content provided by plugins.
+Shortcodes extend the editor. With them, you are not limited to Gutemberg's blocks, nor to text styling only. They allow us to add dynamic content provided by plugins.
 
 ## Example:
 
