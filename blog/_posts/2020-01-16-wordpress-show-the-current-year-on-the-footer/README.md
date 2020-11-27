@@ -4,12 +4,12 @@ date: 2019-09-20
 tags: ['WordPress', 'PHP']
 author: Daniel Loureiro
 ---
-If you write `[video src="video-source.mp4"]` in a paragraph, it will show a video on the page.
+How do you put a video from your library on an article? Answer: you write `[video src="my-video.mp4"]` in a paragraph.
 
-This text fragment, enclosed by brackets `[]`, is a shortcode.
+WordPress will replace the `[video ...]` string with the actual video from your library. This is an example of shortcode usage. Shortcodes are strings enclosed by brackets `[]`.
 <!-- more -->
 
-Shortcodes are used to extend our posts and pages. With them, we can add dynamic content provided by plugins inside our paragraphs.
+Shortcodes extend the editor. With them, you are not limited to Guttember's blocks, nor to text styling only. They allow us to add dynamic content provided by plugins.
 
 ## Example:
 
