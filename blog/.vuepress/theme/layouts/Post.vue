@@ -21,7 +21,7 @@
                     on <time class="mr-3">{{formatDate($page.frontmatter.date)}}</time>
                     <span class="reading-time text-xs uppercase py-4 block md:inline-block md:py-9">
                         <vp-icon size="1.5em" name="clock-best" class="inline-block" />
-                        <!-- {{$page.readingTime.text}} -->
+                        {{$page.readingTime.text}}
                     </span>
                 </p>
 
