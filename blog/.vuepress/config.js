@@ -16,6 +16,12 @@ module.exports = {
     'vuepress-plugin-reading-time',
     '@vuepress/back-to-top',
     [
+      '@vuepress/google-analytics',
+      {
+        'ga': 'UA-36113126-5'
+      }
+    ],
+    [
       '@goy/svg-icons', {
         svgsDir: '.vuepress/icons',
       }
