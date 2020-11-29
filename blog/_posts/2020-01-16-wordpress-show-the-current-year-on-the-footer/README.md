@@ -4,10 +4,12 @@ date: 2019-09-20
 tags: ['WordPress', 'PHP']
 author: Daniel Loureiro
 ---
-How do you put a video from your library on an article? Answer: you write `[video src="my-video.mp4"]` in a paragraph.
-
-WordPress will replace the `[video ...]` string with the actual video from your library. This is an example of shortcode usage. Shortcodes are strings enclosed by brackets `[]`.
+Shortcodes are strings that WordPress replace with dynamic content.
 <!-- more -->
+
+I'm sure you know how to put a video from the library on an article. You write `[video src="my-video.mp4"]` in the paragraph and the video will show.
+
+WordPress replaces the `[video ...]` string with the actual video from your library. This is an example of shortcode usage. Shortcodes are strings enclosed by brackets `[]`.
 
 Shortcodes extend the editor. With them, you are not limited to Gutemberg's blocks, nor to text styling only. They allow us to add dynamic content provided by plugins.
 

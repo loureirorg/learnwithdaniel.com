@@ -4,7 +4,7 @@ date: 2020-03-16
 tags: ['WordPress', 'PHP']
 author: Daniel Loureiro
 ---
-WordPress Plugins hosted on GitHub have a bad readme page by default. 
+WordPress Plugins hosted on GitHub have a bad looking readme page by default.
 
 That's because they can't use markdown, but let's see how to fix this issue.
 <!-- more -->
