@@ -7,25 +7,6 @@ author: Daniel Loureiro
 Let's see how to update your domain links after a WordPress migration.
 <!-- more -->
 
-## Backup
-
-Do a backup first before doing any changes. Use a WP backup plugin for this.
-
-## Get MySQL Credentials
-
-If you don't have the credentials, they are on `wp-config`:
-
-```php
-/** MySQL database username */
-define('DB_USER', 'daniel');
-
-/** MySQL database password */
-define('DB_PASSWORD', '10203040');
-
-/** MySQL hostname */
-define('DB_HOST', 'localhost');
-```
-
 ## Take a look at the database
 
 Let's see how the links look on the db:
@@ -50,7 +31,7 @@ As you see, the links have the **domain** plus the **protocol** (`http` or `http
 
 ## Do the changes
 
-Just run these queries on your MySQL console.
+Run these queries on your MySQL console.
 
 Replace `New` with your new domain (ex. `mynew-domain.com`). Replace `Old` with your old domain (ex. `myold-domain.com`):
 
@@ -63,9 +44,28 @@ UPDATE wp_links SET link_url = replace(link_url, 'Old','New');
 UPDATE wp_comments SET comment_content = replace(comment_content , 'Old','New');
 ```
 
+::: tip
+Do a **backup** before doing any changes. Use a WP backup plugin for this.
+:::
+
 ## HTTP vs HTTPS
 
 Use the same queries to fix any `http` into `https`. Just re-run them replacing `New` with `https://` and `Old` with `http://`.
+
+## MySQL Credentials
+
+If you don't have the credentials, they are on `wp-config`:
+
+```php
+/** MySQL database username */
+define('DB_USER', 'daniel');
+
+/** MySQL database password */
+define('DB_PASSWORD', '10203040');
+
+/** MySQL hostname */
+define('DB_HOST', 'localhost');
+```
 
 ## Troubleshooting: Can't access `admin` dashboard
 
