@@ -30,7 +30,7 @@ define('DB_HOST', 'localhost');
 
 Let's see how the links look on the db:
 
-```mysql
+```sql
 SELECT * FROM wp_options WHERE option_name = 'home' OR option_name = 'siteurl';
 ```
 
@@ -54,7 +54,7 @@ Just run these queries on your MySQL console.
 
 Replace `New` with your new domain (ex. `mynew-domain.com`). Replace `Old` with your old domain (ex. `myold-domain.com`):
 
-```mysql
+```sql
 UPDATE wp_options SET option_value = replace(option_value, 'Old', 'New') WHERE option_name = 'home' OR option_name = 'siteurl';
 UPDATE wp_posts SET post_content = replace(post_content, 'Old', 'New');
 UPDATE wp_postmeta SET meta_value = replace(meta_value,'Old','New');
