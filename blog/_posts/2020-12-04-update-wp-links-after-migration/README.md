@@ -4,7 +4,7 @@ date: 2020-11-29
 tags: ['PHP', 'WordPress', 'IT Ops']
 author: Daniel Loureiro
 ---
-That's a quick tip on how to update your domain links after a WordPress migration.
+Let's see how to update your domain links after a WordPress migration.
 <!-- more -->
 
 ## Backup
