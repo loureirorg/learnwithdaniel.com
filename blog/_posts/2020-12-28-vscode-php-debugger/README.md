@@ -1,6 +1,6 @@
 ---
 title: "Debug PHP on VSCode with XDebug"
-date: 2019-06-05
+date: 2020-12-28
 tags: ['PHP', 'Tools', 'VSCode', 'Debug']
 author: Daniel Loureiro
 ---
