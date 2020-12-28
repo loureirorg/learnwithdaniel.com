@@ -44,6 +44,8 @@ rm phpinfo.php
 
 ```ini
 # /etc/php/7.3/cli/conf.d/20-xdebug.ini
+
+# xdebug v2.x
 xdebug.remote_enable=1
 xdebug.remote_host=127.0.0.1
 xdebug.remote_connect_back=1    # Not safe for production servers
@@ -51,6 +53,11 @@ xdebug.remote_port=9000
 xdebug.remote_handler=dbgp
 xdebug.remote_mode=req
 xdebug.remote_autostart=true
+
+# xdebug v3.x
+xdebug.mode = debug
+xdebug.start_with_request = yes
+xdebug.client_port = 9000
 ```
 
 ## 4. Install `php-debug` plugin on Atom
