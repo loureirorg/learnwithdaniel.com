@@ -1,5 +1,5 @@
 ---
-title: "Debug PHP on VSCode with XDebug"
+title: "PHP Debugger on VSCode"
 date: 2020-12-28
 tags: ['PHP', 'Tools', 'VSCode', 'Debug']
 author: Daniel Loureiro
@@ -55,6 +55,7 @@ xdebug.remote_mode=req
 xdebug.remote_autostart=true
 
 # xdebug v3.x
+xdebug.log_level = 0
 xdebug.mode = debug
 xdebug.start_with_request = yes
 xdebug.client_port = 9000
