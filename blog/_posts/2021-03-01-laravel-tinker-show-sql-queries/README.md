@@ -20,4 +20,4 @@ DB::listen(function ($query) {
 ```
 
 Now, whenever Tinker executes a query, it logs on screen:
-![Tinker showing query](./tinker-sql)
+![Tinker showing query](./tinker-sql.png)
