@@ -12,9 +12,9 @@ Add `.psysh.php` to your project:
 ```php
 <?php
 DB::listen(function ($query) {
-    dump($query->sql);
+    dump("[{$query->time}ms] {$query->sql}");
     if ($query->bindings) {
-       dump($query->bindings);
+        dump($query->bindings);
     }
 });
 ```
