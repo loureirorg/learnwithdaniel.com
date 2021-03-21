@@ -45,7 +45,14 @@ module.exports = {
       '@vuepress/pwa',
       {
         serviceWorker: true,
-        updatePopup: true
+        updatePopup: true,
+      }
+    ],
+    [
+      'disqus',
+      {
+        shortname: 'learnwithdaniel',
+        language: 'en',
       }
     ],
     ['container', {

@@ -31,7 +31,13 @@
                 <Content />
             </div>
 
-            <Comment />
+
+            <hr class="my-12" />
+
+            <div>
+                <h2 class="text-xl md:text-3xl pb-10 text-center">Comments</h2>
+                <Disqus />
+            </div>
         </div>
 
         <Footer />
