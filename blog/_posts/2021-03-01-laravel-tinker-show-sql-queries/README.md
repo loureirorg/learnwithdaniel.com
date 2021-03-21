@@ -1,6 +1,6 @@
 ---
 title: "Show SQL queries on Tinker"
-date: 2020-12-10
+date: 2021-03-01
 tags: ['PHP', 'Laravel', 'Tinker']
 author: Daniel Loureiro
 ---
