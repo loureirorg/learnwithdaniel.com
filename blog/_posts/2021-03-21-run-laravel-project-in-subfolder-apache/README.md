@@ -4,27 +4,24 @@ date: 2021-03-21
 tags: ['DevOps', 'PHP', 'Laravel', 'Apache']
 author: Daniel Loureiro
 ---
-Let's say your frontend and backend are stored in different file folders:
+Let's say you want your Laravel in a subfolder. For example, it's the API of a non-Laravel site:
 <!-- more -->
+
+```bash
+APP: https://mysite.com/     <--- Non-Laravel (React, Vue, Angular, etc.)
+API: https://mysite.com/api  <--- Laravel
+```
+
+Considering your frontend and backend are stored in different file folders:
 
 ```bash
 /var/www/mysite/app
 /var/www/mysite/api
 ```
 
-**Api** is a Laravel project; and the
-**App** is a React, Vue, Angular, etc., project.
-
-You want both in the same domain, but the `api` in a sub-folder:
-
-```bash
-APP - https://mysite.com/
-API - https://mysite.com/api
-```
-
 To make this work, use the `Alias` directive:
 
-```apache
+```apacheconf
 <VirtualHost *:80>
     ServerName 11.22.33.44
     ServerAdmin webmaster@localhost
@@ -45,13 +42,15 @@ To make this work, use the `Alias` directive:
 </VirtualHost>
 ```
 
-The `/dist` folder works with Angular and React projects. Change it according to your frontend.
+::: info
+`/dist` is the default folder configuration for Angular and React projects. Change it according to your frontend.
+:::
 
 ## Two Laravel sub-folders
 
 Let's say you also have an `/admin` URL, managed by Laravel. You can access it with `/api/admin`, but it's ugly. Instead, use the `ScriptAlias` directive to access it directly:
 
-```apache
+```apacheconf
 <VirtualHost *:80>
     ServerName 11.22.33.44
     ServerAdmin webmaster@localhost
