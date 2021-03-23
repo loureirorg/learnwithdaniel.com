@@ -17,7 +17,7 @@ SELECT * FROM wp_options WHERE option_name = 'home' OR option_name = 'siteurl';
 
 Result:
 
-```text
+```textfile
 +-----------+-------------+------------------------------+----------+
 | option_id | option_name | option_value                 | autoload |
 +-----------+-------------+------------------------------+----------+
