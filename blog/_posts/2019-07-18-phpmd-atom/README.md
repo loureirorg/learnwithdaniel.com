@@ -57,6 +57,7 @@ Add this file, `phpmd.xml.dist` to the root of your project. It enables all rule
   <rule ref="rulesets/design.xml"/>
   <rule ref="rulesets/naming.xml"/>
   <rule ref="rulesets/unusedcode.xml"/>
+  <rule ref="rulesets/cleancode.xml"/>
 </ruleset>
 ```
 
