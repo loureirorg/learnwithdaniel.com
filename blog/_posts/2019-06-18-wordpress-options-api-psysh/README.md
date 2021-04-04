@@ -440,6 +440,18 @@ I recommend always setting autoload to `false` and only set it to `true` when ne
 
 There are filters and actions in all Options API functions. Read their source code to check what is available.
 
+## Naming best practices
+
+Let's say your plugin has an option named `color` that stores your plugin's background color. It all works well until another plugin stores their favorite color in an option also named `color`.
+
+The result will be catastrophic. One plugin will mess with the data of the other.
+
+To prevent naming conflicts, it is a good practice to prepend your names with something unique, like your plugin's name:
+
+```php
+update_option( 'my_plugin_color', 'blue' )
+```
+
 ## Final words
 
 The Options API is mostly used by plugins' settings pages on the admin side. Still, it is powerful enough to be used in different scenarios.
