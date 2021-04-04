@@ -122,17 +122,25 @@ If a key doesn't exist, `get_option` returns `false`. Pass a second optional arg
 
 Use this to either detect when the key doesn't exist or to set a default value for the option.
 
-::: info
 `update_option` returns `true` if the key doesn't exist and `false` if it exists.
-:::
 
-Now, some questions:
+```php
+// True means the key didn't exist (create).
+>>> update_option( 'some_key', 'Hello!' )
+=> true
+
+// False means the key exists (update).
+>>> update_option( 'some_key', 'World?' )
+=> false
+```
+
+Questions:
 
 - What happens when you try to store an associative array, like `['age' => 30]`, without serializing it?
 - What about storing a normal array, like `['hello', 'world']`?
 - Could the infamous Bobby Tables cause issues if we don't escape our values?
 
-To answer these questions, let's see under the hood how the Options API is accessing the database.
+To answer these questions better, let's see under the hood how Options API is accessing the database.
 
 ### Displaying SQL queries on PsySH
 
@@ -161,24 +169,20 @@ Now that we can see WordPress accessing the database, we can have a clear unders
 
 #### Load WordPress on PsySH Startup
 
-It's boring and repetitive to type `require` and `add_filter` for each session. Luckily, PsySH has a feature to help with this. Just create a `.psysh.php` file, and PsySH will execute it when starting up.
+It's boring and repetitive to type `require` and `add_filter` each time we open PsySH. Luckily, PsySH has a feature to help with this. Just create a `.psysh.php` file, and PsySH will execute it when starting up.
 
 Create `.psysh.php` file at the root of your WordPress project:
 
 ```php
 <?php
+/** .psysh.php **/
+
 // Load WordPress.
 require( 'wp-load.php' );
 
 // Display WP queries on the shell.
 add_filter( 'query', function ( $sql ) { dump( $sql ); return $sql; } );
 ```
-
-Put in this file any code that you want to be executed when opening a PsySH session.
-
-::: info
-The `.psysh.php` file is not global. It's folder-based. PsySH only executes `.psysh.php` files that are in the same folder.
-:::
 
 Now, when we start PsySH, WordPress is already loaded for us:
 
@@ -191,9 +195,15 @@ Psy Shell v0.10.7 (PHP 7.4.16 — cli) by Justin Hileman
 => false
 ```
 
+Add to `.psysh.php` any code that you want to be executed when opening a PsySH session.
+
+::: warning
+The `.psysh.php` file is not global. It's folder-based. PsySH only executes `.psysh.php` files that are in the same folder.
+:::
+
 ## Options API Database
 
-The Options API values are stored on a database table named `{prefix}_options`. By default, it's the `wp_options`.
+The Options API values are stored on the `wp_options` databse table.
 
 Let's check how our `my_key` is stored on the database:
 
@@ -341,9 +351,9 @@ The only escape you do before storing values is for SQL-injection or anything re
 
 Reasons to not store HTML-escaped values:
 
-1. If there's a bug in the escaping function, how would you fix the problem? Update the entire database?
-2. `echo esc_attr( $str )` is a lot safer than `echo $str`;
-3. `I <3 you` and `I &lt;3 you` are not the same data. When you need to use the data outside the HTML context, you will have issues;
+- If there's a bug in the escaping function, how would you fix the problem? Update the entire database?
+- `echo esc_attr( $str )` is a lot safer than `echo $str`;
+- `I <3 you` and `I &lt;3 you` are not the same data. When you need to use the data outside the HTML context, you will have issues;
 
 ## Autoloaded Options and Cache
 
@@ -420,7 +430,7 @@ Now close and re-open PsySH:
 => "10"
 ```
 
-As expected, the option set to true was already on the cache, loaded on `wp-load.php`. The option set to false had to be loaded from the database.
+As expected, the option set to true was already on the cache, loaded by `wp-load.php`. The option set to false had to be loaded from the database.
 
 ::: danger
 I recommend always setting autoload to `false` and only set it to `true` when needed on every page (or most pages). Otherwise, you will hinder the performance by loading unnecessary data.

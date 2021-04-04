@@ -142,7 +142,7 @@ DB::listen(function ($query) use ($output) {
     $tag = strtolower($tag);
 
     // Margin + "SQL" label + Timing + SQL.
-    $str = "  <label>SQL ({$query->time})<label>  <$tag>{$sql}</$tag>";
+    $str = "  <label>SQL ({$query->time}ms)<label>  <$tag>{$sql}</$tag>";
 
     // Add Bindings.
     if ($query->bindings) {
