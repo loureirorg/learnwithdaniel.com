@@ -1,5 +1,5 @@
 ---
-title: "Options API in depth with PsySH [WordPress Development – Part 3]"
+title: "Options API in depth with PsySH"
 date: 2019-06-17
 tags: ['WordPress', 'PHP', 'WP Plugin Development', 'PsySH']
 author: Daniel Loureiro
