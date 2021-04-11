@@ -122,9 +122,9 @@ Let's check the current sections loaded on Settings API. They are stored in the 
 
 We have no sections defined yet, and thus no forms.
 
-There's no function to explicity define a form. We only have functions to define sections and fields. Forms are implicity defined when we define a section.
+There's no function to explicitly define a form. We only have functions to define sections and fields. Forms are implicitly defined when we define a section.
 
-If any plugin made with the Settings API was active, it would appear here. I disabled the "Code Snippet" plugin previously used as example, that's why we don't see it.
+If any plugin made with the Settings API was active, it would appear here. I disabled the "Code Snippet" plugin previously used as an example, that's why we don't see it.
 
 Now let's define our first section with `add_settings_section(...)`:
 
@@ -419,10 +419,10 @@ function my_menu_html() { ?>
 Our code needs to be called on the admin initialization, with the `admin_init` action:
 
 ```php
-function my_plugin_settings_init() {
+function my_menu_settings_init() {
 }
 
-add_action( 'admin_init', 'my_plugin_settings_init' );
+add_action( 'admin_init', 'my_menu_settings_init' );
 ```
 
 Let's fill the function with our code:
@@ -435,7 +435,7 @@ function my_field_render( $args ) {
   echo "<input type='text' name='{$name}' />";
 }
 
-function my_plugin_settings_init() {
+function my_menu_settings_init() {
   // Section
   $section_id      = 'my-section';
   $section_title   = 'My Section';
@@ -458,7 +458,7 @@ function my_plugin_settings_init() {
   add_settings_field( $field_id, $field_title, $render_callback, $page_id, $section_id, $extra_args );
 }
 
-add_action( 'admin_init', 'my_plugin_settings_init' );
+add_action( 'admin_init', 'my_menu_settings_init' );
 ```
 
 Reload the page to see the results:
@@ -516,7 +516,7 @@ Because of this security feature, our plugin needs to explicity tell the Setting
 We do this with `register_setting( $page_id, $option_key )`:
 
 ```php{23-25}
-function my_plugin_settings_init() {
+function my_menu_settings_init() {
   // Section
   $section_id      = 'my-section';
   $section_title   = 'My Section';
@@ -595,7 +595,7 @@ Key differences:
 
 - **Input Normalization:** Change the input to have a standard form. Examples: trimming values, type casting, lowercase a value, etc. Even though it changes the value, the changes have no semantical impact. The data is different but the information remains the same. `"  John Snow  "` and `"John Snow"` are the same, `"yes"` and `true` are the same, `My@EMail.com` and `my@email.com` are the same, the phone number `(401) 1020-3040` and `40110203040` are the same. This is also called "**Canonicalization**";
 - **Input Validation:** Check if the value is valid. Examples: check if field is required, check if the email has an invalid format, check if the birth date is in the future, check if age is less than 18, check if the name has just one character;
-- **Input Sanitization:** Removes illegal characters and makes risky data safe. Examples: escaping the value `O'Brien` to avoid breaking SQL, escaping strings to avoid SQL-injections. There are two main sanitization types: filtering and escaping;
+- **Input Sanitization:** Removes illegal characters and makes risky data safe. Examples: escaping the value `O'Brien` to avoid breaking SQL, escaping strings to avoid SQL-injections. There are two main competing sanitization types: filtering and escaping. Use one or the other;
 
 The order should be: `normalization > validation > sanitization`.
 
@@ -617,7 +617,7 @@ When **validating inputs**, you need to write code to cancel the whole saving an
 
 **Input normalization**, like trimming strings and converting `"yes"` to `true`, happens before validation, but they are optional.
 
-### Validation on Settings API
+### Code
 
 Let's say we have an email input and we want to validate it.
 
@@ -675,6 +675,138 @@ function my_validation_callback( $option ) {
 To test it, change the `field1` name to `email` and click to save. If you type an invalid email you will get this error:
 
 ![Field 1 is not valid error](./dev29.png)
+
+## Displaying Error and Success messages
+
+Our page is in the "Settings" menu:
+
+![Close-up of our menu item in settings menu](./wp-menu-in-settings.png)
+
+Because of it, success and error messages are displayed automatically:
+
+![Error message on our page after saving](./wp-error-message.png)
+
+But let's move our menu to the "Tools" menu:
+
+```php{7}
+function my_menu_init() {
+  $page_title = 'My Plugin Page';
+  $menu_title = 'My Plugin';
+  $capability = 'manage_options'; // Only users that can manage options can access this menu item.
+  $menu_slug  = 'my-menu'; // unique identifier.
+  $callback   = 'my_menu_html';
+  add_management_page( $page_title, $menu_title, $capability, $menu_slug, $callback );
+}
+```
+
+![Close-up of our menu item in tools menu](./wp-menu-in-tools.png)
+
+Now, when you click to save, no message is displayed. No success or errors.
+
+![No messages on our page after saving](./wp-no-messages.png)
+
+Outside "Settings" menu, we need to manually display the messages with `settings_errors( $page_id )`:
+
+```php{5,6}
+function my_menu_html() {
+  // show error/update messages
+  settings_errors( 'my-menu' );
+
+  ?>
+  <div class="wrap">
+    <h1><?php echo get_admin_page_title() ?></h1>
+
+    <form method="post" action="options.php">
+      <?php settings_fields( 'my-menu' ) ?>
+      <?php do_settings_sections( 'my-menu' ) ?>
+      <?php submit_button() ?>
+    </form>
+  </div>
+  <?php
+}
+```
+
+Reload the page and press to save:
+
+![Error message on our page after saving](./wp-error-message.png)
+
+The error message works now, but what about the success message? Remove the validation callback:
+
+```php
+register_setting( 'my-plugin', 'my-plugin' );
+```
+
+And click to save:
+
+![No messages on our page after saving](./wp-no-messages.png)
+
+No success messages. To fix it, we need to call `add_settings_error(...)` with `success` on the `$type` argument.
+
+You can place it in the validation callback, after checking that there are no errors:
+
+```php
+/** Display success and save normalized inputs.  */
+add_settings_error( 'my-menu', 'success', 'Settings Saved', 'updated' );
+return $normalized;
+```
+
+That will work:
+
+![Success message after saving](./wp-settings-saved-success.png)
+
+But what if something goes wrong in the `options.php`? What if there's a problem with the database or if some external code intercepts the input and throw an error?
+
+Because of this, the best place to put this code is right before displaying the messages, in the form:
+
+```php
+function my_menu_html() {
+  // Check if was properly saved.
+  $has_been_saved = isset( $_GET['settings-updated'] );
+  if ( $has_been_saved ) {
+    add_settings_error( 'my-menu', 'success', 'Settings Saved', 'updated' );
+  }
+
+  // Display error/update messages
+  settings_errors( 'my-menu' );
+
+  ?>
+  <div class="wrap">
+    <h1><?php echo get_admin_page_title() ?></h1>
+
+    <form method="post" action="options.php">
+      <?php settings_fields( 'my-menu' ) ?>
+      <?php do_settings_sections( 'my-menu' ) ?>
+      <?php submit_button() ?>
+    </form>
+  </div>
+  <?php
+}
+```
+
+If `options.php` was able to successfully save the input, and there were no error messages, it passes the `settings-updated` argument on the URL. Use it to detect success:
+
+![Success message after saving](./wp-settings-saved-success.png)
+
+## Security: Checking for permissions
+
+The Settings API will check for intention (nonces) and perform other security checks for us, thanks to the `settings_field()` function in the form.
+
+WordPress checks if we have permissions to open the menu page thanks to the `$capability` argument on `add_*_page()`.
+
+But it is a good practice to double-check the permissions when rendering the page:
+
+```php
+function my_menu_html() {
+  // Check user capabilities
+  if ( ! current_user_can( 'manage_options' ) ) {
+    return;
+  }
+
+  /** ... */
+}
+```
+
+Use the same capability defined on `add_*_page()`.
 
 ---
 
