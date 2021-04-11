@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="dark:bg-black bg-white dark:text-gray-300 text-gray-900">
         <Header />
 
         <div class="container mx-auto px-6 md:px-16 py-8 max-w-screen-md">
@@ -9,13 +9,13 @@
                     <span
                         v-for="(tag) in $page.frontmatter.tags"
                         :key="tag"
-                        class="bg-tag px-3 py-1 mx-1 rounded-full uppercase text-xs font-medium text-color tracking-wider"
+                        class="dark:bg-gray-800 bg-gray-100 px-3 py-1 mx-1 rounded-full uppercase text-xs font-medium dark:text-green-700 tracking-wider"
                     >
                         {{tag}}
                     </span>
                 </div>
 
-                <h1 class="text-4xl md:text-6xl py-6">{{this.effectiveTitle}}</h1>
+                <h1 class="dark:text-green-600 text-4xl md:text-6xl py-6">{{this.effectiveTitle}}</h1>
                 <p class="author text-sm">
                     by <span class="text-base font-bold">{{effectiveAuthor}}</span>
                     on <time class="mr-3">{{formatDate($page.frontmatter.date)}}</time>
@@ -158,8 +158,13 @@
     margin: 0
     padding: 0.25rem 0.5rem
     border-radius: 0.25rem
-    color: #4a5568
-    background-color: #edf2f7
+    color: theme('colors.gray.700')
+    background-color: theme('colors.gray.200')
+
+@media (prefers-color-scheme: dark)
+    .post-wrap p > code
+        color: theme('colors.gray.200')
+        background-color: theme('colors.gray.700')
 
 .post-wrap div[class*="language-"] .highlight-lines .highlighted
     background: rgba(256, 128, 0, 0.3)
@@ -226,9 +231,15 @@
     padding-top: 1.5rem
 
 .post-wrap .custom-block.info
-    background-color: #cce5ff
-    border-color: #004085
-    color: #004085
+    background-color: theme('colors.blue.200')
+    border-color: theme('colors.blue.900')
+    color: theme('colors.blue.900')
+
+@media (prefers-color-scheme: dark)
+    .post-wrap .custom-block.info
+        border-color: theme('colors.blue.900')
+    .post-wrap .custom-block.info .custom-block-title
+        color: theme('colors.blue.600')
 
 .post-wrap .custom-block.warning
     background-color: rgba(255,229,100,0.3)
@@ -251,6 +262,15 @@
 
 .post-wrap .custom-block.warning p
     color: #6b5900
+
+@media (prefers-color-scheme: dark)
+    .post-wrap .custom-block.danger,
+    .post-wrap .custom-block.tip,
+    .post-wrap .custom-block.warning,
+    .post-wrap .custom-block.success,
+    .post-wrap .custom-block.info
+        background-color: theme('colors.gray.800')
+        color: theme('colors.gray.300')
 
 .post-wrap hr
     max-width: 100px
@@ -283,7 +303,7 @@
     padding-left: 12px
     text-align: left
     border-bottom: 1px solid #dde0e0
-    color: $textColor
+    // color: $textColor
 </style>
 
 <script>

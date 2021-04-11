@@ -1,7 +1,7 @@
 // const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
-  darkMode: false,
+  darkMode: 'media',
   future: {
     purgeLayersByDefault: true,
   },
@@ -10,4 +10,12 @@ module.exports = {
       "./blog/.vuepress/theme/**/*.vue",
     ],
   },
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#c41d47',
+        'secondary': '#308013',
+      },
+    },
+  }
 }
