@@ -1,5 +1,5 @@
 <template>
-    <div class="dark:bg-black bg-white dark:text-gray-300 text-gray-900">
+    <div class="dark:bg-gray-900 bg-white dark:text-gray-500 text-gray-900">
         <Header />
 
         <div class="container mx-auto px-6 md:px-16 py-8 max-w-screen-md">
@@ -15,7 +15,7 @@
                     </span>
                 </div>
 
-                <h1 class="dark:text-green-600 text-4xl md:text-6xl py-6">{{this.effectiveTitle}}</h1>
+                <h1 class="dark:text-green-700 text-4xl md:text-6xl py-6">{{this.effectiveTitle}}</h1>
                 <p class="author text-sm">
                     by <span class="text-base font-bold">{{effectiveAuthor}}</span>
                     on <time class="mr-3">{{formatDate($page.frontmatter.date)}}</time>
@@ -163,12 +163,20 @@
 
 @media (prefers-color-scheme: dark)
     .post-wrap p > code
-        color: theme('colors.gray.200')
+        color: theme('colors.gray.400')
         background-color: theme('colors.gray.700')
 
 .post-wrap div[class*="language-"] .highlight-lines .highlighted
     background: rgba(256, 128, 0, 0.3)
     transform: translateY(2px)
+
+// Header Color
+@media (prefers-color-scheme: dark)
+    .post-wrap h2,
+    .post-wrap h3,
+    .post-wrap h4,
+    .post-wrap h5
+        color: theme('colors.gray.400')
 
 .post-wrap p > a,
 .post-wrap li > a,
@@ -239,7 +247,7 @@
     .post-wrap .custom-block.info
         border-color: theme('colors.blue.900')
     .post-wrap .custom-block.info .custom-block-title
-        color: theme('colors.blue.600')
+        color: theme('colors.blue.700')
 
 .post-wrap .custom-block.warning
     background-color: rgba(255,229,100,0.3)
@@ -270,7 +278,7 @@
     .post-wrap .custom-block.success,
     .post-wrap .custom-block.info
         background-color: theme('colors.gray.800')
-        color: theme('colors.gray.300')
+        color: theme('colors.gray.400')
 
 .post-wrap hr
     max-width: 100px

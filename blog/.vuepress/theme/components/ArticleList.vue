@@ -11,7 +11,7 @@
                 <li class="mx-2">-</li>
                 <li>{{formatDate(article.frontmatter.date)}}</li>
             </ul>
-            <p class="dark:text-gray-300 text-justify text-xl mb-6">
+            <p class="dark:text-gray-500 text-justify text-xl mb-6">
                 {{article.excerpt | strippedContent}}
             </p>
             <div class="flex justify-center text-xs dark:text-gray-400 text-blue-500 uppercase">
