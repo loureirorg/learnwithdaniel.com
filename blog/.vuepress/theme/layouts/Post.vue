@@ -208,7 +208,7 @@
 .post-wrap .custom-block.tip,
 .post-wrap .custom-block.warning,
 .post-wrap .custom-block.success,
-.post-wrap .custom-block.tip
+.post-wrap .custom-block.info
     padding: 1rem 1.5rem 2rem 1.5rem
     border-left-width: .5rem
     border-left-style: solid
@@ -227,7 +227,7 @@
 
 .post-wrap .custom-block.info
     background-color: #cce5ff
-    border-color: #42b983
+    border-color: #004085
     color: #004085
 
 .post-wrap .custom-block.warning
