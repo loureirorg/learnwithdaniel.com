@@ -587,31 +587,41 @@ Always escape inputs before output. For HTML attributes, use the `esc_attr( $tex
 $value = esc_attr( $option[ $field_id ] );
 ```
 
-## Input Normalization, Validation, Sanitization
+## Input Normalization, Validation, Sanitization, Filtering and Escaping
 
-The Settings API has an special mechanism for validations, but first let's understand its concepts.
+The Settings API has a special mechanism for validations, but first let's understand its concepts.
 
 Key differences:
 
-- **Input Normalization:** Change the input to have a standard form. Examples: trimming values, type casting, lowercase a value, etc. Even though it changes the value, the changes have no semantical impact. The data is different but the information remains the same. `  John Snow  ` and `John Snow` are the same, `"yes"` and `true` are the same, `My@EMail.com` and `my@email.com` are the same, the phone number `(401) 1020-3040` and `40110203040` are the same. This is also called "**Canonicalization**";
+- **Input Normalization:** Change the input to have a standard form. Examples: trimming values, type casting, lowercase a value, etc. Even though it changes the value, the changes have no semantical impact. The data is different but the information remains the same. `"  John Snow  "` and `"John Snow"` are the same, `"yes"` and `true` are the same, `My@EMail.com` and `my@email.com` are the same, the phone number `(401) 1020-3040` and `40110203040` are the same. This is also called "**Canonicalization**";
 - **Input Validation:** Check if the value is valid. Examples: check if field is required, check if the email has an invalid format, check if the birth date is in the future, check if age is less than 18, check if the name has just one character;
-- **Input Sanitization:** It removes illegal characters and make risky data safe. Examples: escaping the value `O'Brien` to avoid breaking SQL, escaping strings to avoid SQL-injections;
+- **Input Sanitization:** Removes illegal characters and makes risky data safe. Examples: escaping the value `O'Brien` to avoid breaking SQL, escaping strings to avoid SQL-injections. There are two main sanitization types: filtering and escaping;
 
 The order should be: `normalization > validation > sanitization`.
 
-A good thing is that we don't need to worry about **input sanitization** when saving data with the Settings API. The Settings API uses the Options API which automatically escapes inputs before saving them, as we have seen before. We still need to escape the value before printing to prevent XSS attacks, but not here, during saving, which is what this section is about.
+### Sanitization types: Filtering vs Escaping
 
-When **validating inputs**, you need write code to cancel the whole saving and return an error message when an invalid input is detected.
+`Escaping` is when we encode the input so the characters don't get mistaken as commands. For example, encode `O'Brien` to `O\'Brien` when escaping for SQL. Or encoding `<3` to `&#60;3` for HTML, or `Me & You` to `Me%20%26%20You` for URLs. Escaping can also be called `encoding`.
 
-**Input normalization**, happens before validation, but they are optional.
+`Filtering` is to remove illegal characters. For example, `O'Brien` becomes `OBrien`, `<3` becomes `3`, `Me & You` becomes `Me You`.
+
+Always **prefer escaping** for your sanitizations. Do not just remove characters before saving them, adulterating their contents. That's bad practice.
+
+When used for validation, filtering frequently prevents authorized input, like `O'Brien`, where the `'` character is fully legitimate. When used for sanitization, it saves wrong data. **Do not rely on filtering** for validations nor sanitizations.
+
+### Settings API
+
+**Sanitization:** A good thing about the Settings API is that we don't need to worry about risky inputs when saving with it. The Settings API uses the Options API which automatically escapes inputs before saving them, as we have seen before. We still need to escape the value before printing to prevent XSS attacks, but not here, during saving, which is what this section is about.
+
+When **validating inputs**, you need to write code to cancel the whole saving and return an error message when an invalid input is detected.
+
+**Input normalization**, like trimming strings and converting `"yes"` to `true`, happens before validation, but they are optional.
 
 ### Validation on Settings API
 
 Let's say we have an email input and we want to validate it.
 
-The 3rd argument of `register_setting()` accepts an validation callback. The callback should return the value that will be saved.
-
-The argument is an optional array that allows us to set: field type, description, etc. The key for the callback is `sanitize_callback`.
+The 3rd argument of `register_setting()` accepts a callback to check and change the inputs before saving. The callback should return the value that will be saved:
 
 ```php
 // my-plugin/my-plugin.php
@@ -627,12 +637,18 @@ function my_validation_callback( $option ) {
 }
 ```
 
-For a full normalization and validation, we use the same callback. The trick is to return the original value when a value is invalid. We also throw an error message with `add_settings_error( $setting, $code, $message, $type = 'error' )`:
+In this example, if the user tries to save `my#@email.com`, it will save it as `my@email.com`. That works, but it is lazy and a bad way to deal with inputs. That's the filtering sanitization.
+
+We shouldn't adulterate the inputs. If there's an illegal email character we should return an error and not save the input. If there's a risky character, we should encode it, not remove it.
+
+Despite its name, `sanitize_callback` can and should be used for validation and normalization. The trick is to return the original value when invalid. Use `add_settings_error( $setting, $code, $message, $type = 'error' )` to throw errors for invalid inputs:
 
 ```php
 // my-plugin/my-plugin.php
 function my_validation_callback( $option ) {
-  $option_name = 'my-menu-option';
+  /** The original value. */
+  $option_name     = 'my-menu-option';
+  $original_option = get_option( $option_name );
 
   /** Normalization. */
   $normalized = [
@@ -648,7 +664,7 @@ function my_validation_callback( $option ) {
   /** When has errors, return the original state (do not save). */
   $has_errors = 0 !== count( get_settings_errors( $option_name ) );
   if ( $has_errors ) {
-    return get_option( $option_name );
+    return $original_option;
   }
 
   /** Save normalized inputs when there's no errors.  */
