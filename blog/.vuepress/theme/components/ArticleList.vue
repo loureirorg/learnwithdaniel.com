@@ -1,7 +1,7 @@
 <template>
     <section>
-        <article v-for="article in articles" :key="article.key" class="pb-8 border-b">
-            <h2 class="dark:text-green-600 text-primary text-4xl md:text-5xl font-medium text-center mt-10 leading-tight mb-3">
+        <article v-for="article in articles" :key="article.key" class="pb-8 border-b dark:border-gray-700">
+            <h2 class="dark:text-green-500 text-primary text-4xl md:text-5xl font-medium text-center mt-10 leading-tight mb-3">
                 <router-link :to="article.path">
                     {{article.title}}
                 </router-link>
@@ -11,11 +11,11 @@
                 <li class="mx-2">-</li>
                 <li>{{formatDate(article.frontmatter.date)}}</li>
             </ul>
-            <p class="dark:text-gray-500 text-justify text-xl mb-6">
+            <p class="dark:text-sepia text-justify text-xl mb-6">
                 {{article.excerpt | strippedContent}}
             </p>
-            <div class="flex justify-center text-xs dark:text-gray-400 text-blue-500 uppercase">
-                <router-link :to="article.path" class="border py-2 px-4 dark:border-gray-400">
+            <div class="flex justify-center text-xs dark:text-sepia text-blue-500 uppercase">
+                <router-link :to="article.path" class="border py-2 px-4 dark:border-gray-700">
                     Continue Reading
                 </router-link>
             </div>

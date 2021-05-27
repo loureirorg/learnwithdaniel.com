@@ -1,5 +1,5 @@
 <template>
-    <div class="dark:bg-gray-900 bg-white dark:text-gray-500 text-gray-900">
+    <div class="dark:bg-gray-1000 bg-white dark:text-sepia text-gray-900">
         <Header />
 
         <div class="container mx-auto px-6 md:px-16 py-8 max-w-screen-md">
@@ -15,7 +15,7 @@
                     </span>
                 </div>
 
-                <h1 class="dark:text-green-700 text-4xl md:text-6xl py-6">{{this.effectiveTitle}}</h1>
+                <h1 class="dark:text-green-500 text-4xl md:text-6xl py-6">{{this.effectiveTitle}}</h1>
                 <p class="author text-sm">
                     by <span class="text-base font-bold">{{effectiveAuthor}}</span>
                     on <time class="mr-3">{{formatDate($page.frontmatter.date)}}</time>
@@ -171,12 +171,12 @@
     transform: translateY(2px)
 
 // Header Color
-@media (prefers-color-scheme: dark)
-    .post-wrap h2,
-    .post-wrap h3,
-    .post-wrap h4,
-    .post-wrap h5
-        color: theme('colors.gray.400')
+// @media (prefers-color-scheme: dark)
+//     .post-wrap h2,
+//     .post-wrap h3,
+//     .post-wrap h4,
+//     .post-wrap h5
+//         color: theme('colors.gray.400')
 
 .post-wrap p > a,
 .post-wrap li > a,
