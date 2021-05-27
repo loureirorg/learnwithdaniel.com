@@ -4,36 +4,36 @@ date: 2021-03-21
 tags: ['DevOps', 'PHP', 'Laravel', 'Apache']
 author: Daniel Loureiro
 ---
-Let's say you want your Laravel in a subfolder. For example, it's the API of a non-Laravel site:
+Let's say you want to run Laravel in a URL subfolder. For example, `https://domain/my-laravel`.
 <!-- more -->
 
 ```bash
-APP: https://mysite.com/     <--- Non-Laravel (React, Vue, Angular, etc.)
-API: https://mysite.com/api  <--- Laravel
+https://domain/            <--- Non-Laravel (React, Vue, Angular, WordPress, etc.)
+https://domain/my-laravel  <--- Laravel
 ```
 
-Considering your frontend and backend are stored in different file folders:
+The root site is stored on `/main-site`, and Laravel is stored on `/laravel-app`.
 
 ```bash
-/var/www/mysite/app
-/var/www/mysite/api
+/var/www/mysite/main-site
+/var/www/mysite/laravel-app
 ```
 
-To make this work, use the `Alias` directive:
+On Apache, use the `Alias` directive to point `https://../my-laravel` to `/var/.../laravel-app`:
 
 ```apacheconf
 <VirtualHost *:80>
     ServerName 11.22.33.44
     ServerAdmin webmaster@localhost
 
-    DocumentRoot /var/www/mysite/app/dist
-    Alias /api /var/www/mysite/api/public
+    DocumentRoot /var/www/mysite/main-site/dist
+    Alias /my-laravel /var/www/mysite/laravel-app/public
 
-    <Directory /var/www/mysite/app>
+    <Directory /var/www/mysite/main-site>
         AllowOverride All
     </Directory>
 
-    <Directory /var/www/mysite/api>
+    <Directory /var/www/mysite/laravel-app>
         AllowOverride All
     </Directory>
 
@@ -43,27 +43,31 @@ To make this work, use the `Alias` directive:
 ```
 
 ::: info
-`/dist` is the default folder configuration for Angular and React projects. Change it according to your frontend.
+`/dist` is the default folder configuration for Angular and React projects. Change it according to your project.
+
+`/public` is the default folder for Laravel applications.
 :::
 
-## Two Laravel sub-folders
+## Two Laravel URL sub-folders
 
-Let's say you also have an `/admin` URL, managed by Laravel. You can access it with `/api/admin`, but it's ugly. Instead, use the `ScriptAlias` directive to access it directly:
+Let's say the Laravel project has an  `/admin` route. You can access it with `https://.../my-laravel/admin`, but it's ugly. Instead, you want to access it with `https://.../admin`.
+
+Use the `ScriptAlias` directive for this:
 
 ```apacheconf
 <VirtualHost *:80>
     ServerName 11.22.33.44
     ServerAdmin webmaster@localhost
 
-    DocumentRoot /var/www/mysite/app/dist
-    Alias /api /var/www/mysite/api/public
-    ScriptAlias /admin /var/www/mysite/api/public
+    DocumentRoot /var/www/mysite/main-site/dist
+    Alias /api /var/www/mysite/laravel-app/public
+    ScriptAlias /admin /var/www/mysite/laravel-app/public
 
-    <Directory /var/www/mysite/app>
+    <Directory /var/www/mysite/main-site>
         AllowOverride All
     </Directory>
 
-    <Directory /var/www/mysite/api>
+    <Directory /var/www/mysite/laravel-app>
         AllowOverride All
     </Directory>
 
@@ -74,5 +78,5 @@ Let's say you also have an `/admin` URL, managed by Laravel. You can access it w
 
 ### Difference of `Alias` vs `ScriptAlias`
 
-* `Alias`: Suppress the folder name. When you access `https://mysite.com/api/something`, Laravel only gets `/something`.
-* `ScriptAlias`: Do not suppress the folder name. When you access `https://mysite.com/admin/something`, Laravel gets `/admin/something`.
+* `Alias`: Suppress the URL folder name. When you access `https://.../folder/something`, Laravel only gets `/something`.
+* `ScriptAlias`: Do not suppress the URL folder name. When you access `https://.../folder/something`, Laravel gets `/folder/something`.
