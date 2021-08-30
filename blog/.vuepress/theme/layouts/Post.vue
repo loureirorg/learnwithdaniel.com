@@ -187,20 +187,24 @@
     color: #2080ad
 
 .post-wrap blockquote
-    background: #f9f9f9
+    background-color: rgba(230,230,230,0.3)
     margin: 1.5em 10px
-    padding: 1em 10px
+    padding: 1em
+    padding-left: 10px
     quotes: "\201C""\201D""\2018""\2019"
     border-left: 10px solid #ccc
     font-style: italic
+
+@media (prefers-color-scheme: dark)
+    .post-wrap blockquote
+        background-color: theme('colors.gray.800')
+        color: theme('colors.gray.400')
 
 .post-wrap blockquote:before
     color: #ccc
     content: open-quote
     font-size: 4em
     line-height: 0.1em
-    // margin-right: 0.25em
-    // vertical-align: -0.4em
     position: absolute
     margin-top: 25px
 
@@ -268,8 +272,16 @@
 .post-wrap .custom-block.danger p
     color: #4d0000
 
+@media (prefers-color-scheme: dark)
+    .post-wrap .custom-block.danger p
+        color: theme('colors.red.500')
+
 .post-wrap .custom-block.warning p
     color: #6b5900
+
+// @media (prefers-color-scheme: dark)
+//     .post-wrap .custom-block.warning p
+//         color: theme('colors.yellow.500')
 
 @media (prefers-color-scheme: dark)
     .post-wrap .custom-block.danger,
@@ -284,7 +296,7 @@
     max-width: 100px
     margin: 30px auto
     color: $hrLine
-    background-color: white
+    background-color: transparent
     border-width: 0
     border-bottom: 2px solid $hrLine
     height: 30px

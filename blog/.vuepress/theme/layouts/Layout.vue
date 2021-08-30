@@ -15,6 +15,17 @@
     </div>
 </template>
 
+<style lang="stylus">
+@media (prefers-color-scheme: dark)
+    .pagination > li > *,
+    .pagination > li > *:hover
+        background-color: transparent !important
+        border: 1px solid #333 !important
+
+    .pagination > li.active > *
+        background-color: theme('colors.green.800') !important
+</style>
+
 <script>
 import Header from '@theme/components/Header'
 import Footer from '@theme/components/Footer'
