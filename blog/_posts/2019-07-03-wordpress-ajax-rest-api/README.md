@@ -1,17 +1,15 @@
 ---
-title: "Ajax in WordPress [Plugin Development – Part 3]"
+title: "Ajax API and REST API"
 date: 2019-07-03
 tags: ['WordPress', 'PHP', 'WP Plugin Development']
 author: Daniel Loureiro
 ---
-This is the 3rd part of my WordPress Plugin Development tutorial. Check also the [first](/2019/06/wordpress-plugin-development/) and [second](/2019/06/wordpress-create-menu/) parts.
+WordPress has APIs to implement Ajax: `Ajax API` and `REST API`. Let's see how to use them.
 <!-- more -->
-
-There are two APIs to implement Ajax in WordPress: `Ajax API` or `REST API`. A third option is to intercept all requests (by using the `init` callback), check if directed to our endpoint, return some content and exit.
 
 - The `Ajax API` was the only option for many years. It consists of sending a POST request to `/wp-admin/admin-ajax.php`. The "admin" in the URL is misleading as it can be used either in the admin or in the front-end.
 
-- The `REST API` is more recent. It was launched on version 4.4 and it can be considered a more modern approach for Ajax requests. It also allows for custom endpoints.
+- The `REST API` is more recent. WordPress released this API on version 4.4, and it can be considered a more modern approach for Ajax requests. It also allows for custom endpoints.
 
 Some people consider the REST API more complex and difficult to understand than the Ajax API, but it is up to you to choose one over the other. In the end, they both do the same things.
 
@@ -19,11 +17,9 @@ Some people consider the REST API more complex and difficult to understand than 
 
 ## 1. Ajax API
 
-To implement your Ajax method, use `wp_ajax_*` (for authenticated access) or `wp_ajax_nopriv_*` (for unauthenticated access):
+To implement an Ajax endpoint, use `wp_ajax_*` (for authenticated access) or `wp_ajax_nopriv_*` (for unauthenticated access):
 
 ```php
-// my-plugin/my-plugin.php
-
 /** Ajax route. */
 add_action( 'wp_ajax_my_action', 'my_action_callback' );
 add_action( 'wp_ajax_nopriv_my_action', 'my_action_callback' );
@@ -64,9 +60,9 @@ Done!
 
 In the PHP code, notice that we assigned the same callback for both authenticated and unauthenticated access. This guarantees that we will always answer to the given action.
 
-If you want to do the same (use the same callback for both states), use a `is_user_logged_in()` in the callback to differentiate these states. Alternatively, you can set two callbacks, one for each state.
+If you want to use the same callback for both states, use a `is_user_logged_in()` in the callback to differentiate these states. Alternatively, you can set two callbacks, one for each state.
 
-If you don't need to respond to unauthenticated users, you can set the "wp_ajax_*" action only.
+If your endpoint is for authenticated users only and you want to ignore unauthenticated users, you can only set the "wp_ajax_*" action.
 
 ---
 
@@ -115,12 +111,11 @@ Personally, **I don't think it is necessary to use nonces with the Ajax API**. C
 
 ## 2. REST API
 
-Let's create an AJAX method: `GET /my-namespace/v1/something`:
+Let's create this AJAX endpoint, using the REST API: `GET /my-namespace/v1/something`:
 
 ```php
-// my-plugin/my-plugin.php
-public function my_method_callback( $request ) {
-  /** The return is automatically converted to JSON. */
+function my_method_callback( $request ) {
+  /** The response is automatically converted to JSON. */
   return $request->get_params();
 }
 
@@ -128,7 +123,7 @@ public function my_method_callback( $request ) {
 add_action( 'rest_api_init', function() {
   register_rest_route( 'my-namespace/v1', '/something', [
     'methods'  => 'GET',
-    'callback' => [ $this, 'my_method_callback' ]
+    'callback' => 'my_method_callback',
   ] );
 } );
 ```
@@ -148,7 +143,7 @@ Done!
 The format is: `{namespace}/{version}/{resource}`. For example, the core WP "users" endpoint is: `wp/v2/users`.
 
 ::: danger
-**NEVER** add methods to the wp namespace. Ex. `wp/1/my-endpoint`. The `wp` namespace is reserved for the WordPress core.
+**NEVER** add endpoints to the wp namespace. Ex. `wp/1/my-endpoint`. The `wp` namespace is reserved for the WordPress core.
 :::
 
 ### 2.1. Pretty URLs
@@ -160,7 +155,6 @@ If your website has pretty permalinks support, then you can call the route direc
 Use `rest_url( $path )` whenever you need to print the URL. This method detects if the installation supports pretty URLs and writes the correct URL:
 
 ```php
-// my-plugin/my-plugin.php
 $url = rest_url( 'my-namespace/v1/something' );
 ```
 
@@ -190,7 +184,6 @@ The URL is the same for all CRUD operations. Which operation will be executed de
 Let's say you want to add a POST operation to your "/something":
 
 ```php
-// my-plugin/my-plugin.php
 register_rest_route(
   'my-namespace/v1',
   '/something',
@@ -207,14 +200,13 @@ register_rest_route(
 );
 ```
 
-In other words, just pass your methods in an array.
+In other words, pass your methods in an array.
 
 ### 2.3. Verb Constants
 
 Instead of POST/GET/etc, use the API constants:
 
 ```php
-// my-plugin/my-plugin.php
 register_rest_route( 'my-namespace/v1', '/something', [
   'methods'  => WP_REST_Server::READABLE, // "READABLE" == "GET"
   'callback' => [ $this, 'my_method_callback' ]
@@ -308,8 +300,7 @@ You can use the `sanitize_*()` helpers, PHP's core helpers (ex. `intval()`) or a
 A simpler solution is to validate and sanitize the inputs in your callback, not in `args`:
 
 ```php
-// my-plugin/my-plugin.php
-public function my_method_callback( $request ) {
+function my_method_callback( $request ) {
   $parameters = $request->get_params();
   $username   = sanitize_text_field($parameters['username']);
   /** ... */
@@ -331,7 +322,6 @@ There are two methods to work with nonces: `wp_create_nonce()` and `check_ajax_r
 Starting on WordPress version **4.7**, you can define your REST API by creating a class inherited from the `WP_REST_Controller` class. Then, implement a `register_routes()` public method that will define your routes:
 
 ```php
-// my-plugin/my-plugin.php
 class MyRestRouter extends WP_REST_Controller {
   public function register_routes() {
     register_rest_route( 'my-namespace/v1', '/something', [
