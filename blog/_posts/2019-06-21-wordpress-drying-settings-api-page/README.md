@@ -4,10 +4,10 @@ date: 2019-06-21
 tags: ['WordPress', 'PHP', 'WP Plugin Development']
 author: Daniel Loureiro
 ---
-Forms created with the Settings API usually have lots of repetitive code. To improve this, let's see a simple technique to write forms with reduced code. This technique is inspired by how WooCommerce creates forms for its settings pages.
+Forms created with the Settings API usually have lots of repetitive code. To improve this, let's see a simple technique to write forms with reduced code,  inspired by WooCommerce.
 <!-- more -->
 
-The idea is simple: we put all form fields in an array. Then, we loop this array calling `add_settings_field()` dynamically.
+The idea is simple: we put all the form fields in an array. Then, we loop this array and call `add_settings_field()` dynamically.
 
 We can save this code as an external file and re-use it to all our pages, just changing the array input.
 
@@ -172,7 +172,7 @@ function my_field_render( $args ) {
   echo "<input type='{$type}' name='{$name}' value='{$value}' />";
 }
 
-function define_settings_form($page_id, $option_key, $sections, $validation_callback) {
+function define_settings_form($page_id, $option_key, $sections) {
   // Loop sections.
   foreach ( $sections as $index => $section ) {
 
@@ -210,9 +210,8 @@ Now, you can easily create forms by just defining an array:
 required_once "settings-utils.php";
 
 function my_menu_define_form() {
-  $page_id             = 'my-menu';
-  $option_key          = 'my-menu-option';
-  $validation_callback = 'my_validation_callback';
+  $page_id    = 'my-menu';
+  $option_key = 'my-menu-option';
 
   // Form structure.
   $sections = [
@@ -234,7 +233,7 @@ function my_menu_define_form() {
     ],
   ];
 
-  define_settings_form($page_id, $option_key, $sections, $validation_callback);
+  define_settings_form($page_id, $option_key, $sections);
 }
 ```
 
