@@ -3,7 +3,7 @@
 
         <Header />
 
-        <ArticleList :articles="$pagination.pages"  class="container mx-auto px-6 py-8 max-w-screen-md" />
+        <ArticleList :articles="posts_active()"  class="container mx-auto px-6 py-8 max-w-screen-md" />
 
         <div class="text-center">
             <Pagination />
@@ -36,5 +36,11 @@ import { sortByDate } from '@theme/utils'
 
 export default {
     components: { Header, Footer, ArticleList, Pagination },
+    methods: {
+        posts_active() {
+            return this.$pagination.pages
+                .filter((page) => !page.frontmatter.status || 'active' === page.frontmatter.status)
+        },
+    },
 }
 </script>

@@ -11,6 +11,9 @@ module.exports = {
       require('autoprefixer'),
     ]
   },
+  themeConfig: {
+    status: 'active',
+  },
   plugins: [
     'reading-progress',
     'vuepress-plugin-reading-time',
