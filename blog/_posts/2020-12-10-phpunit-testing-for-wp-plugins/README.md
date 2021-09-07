@@ -3,6 +3,7 @@ title: "Unit Test for WordPress Plugins"
 date: 2020-12-10
 tags: ['PHP', 'WordPress', 'Testing']
 author: Daniel Loureiro
+status: draft
 ---
 Let's add PHPUnit testing to your WordPress plugins.
 <!-- more -->

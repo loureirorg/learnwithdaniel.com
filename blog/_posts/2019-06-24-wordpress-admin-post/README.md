@@ -1,61 +1,154 @@
 ---
-title: "HTTP Processing on WordPress"
-date: 2019-06-23
+title: "HTTP Processing on WordPress with `admin_post`"
+date: 2019-06-26
 tags: ['WordPress', 'PHP', 'WP Plugin Development']
 author: Daniel Loureiro
+status: draft
 ---
-Being able to receive and process requests is one of the most important things for a plugin. Let's see how to do it on WordPress.
+So far, we wrote code triggered by specific actions, ex.: opening an admin menu page. But how to execute code by calling an URL? Let's say we want an endpoint that executes a "Hello, World!" and nothing else. How to achieve this?
+
+WordPress has a generic HTTP request handler for these cases, the `admin_post` action. Let's see it in action by executing an "Hello, World!".
 <!-- more -->
 
-Sometimes you need extra buttons on your admin page, that once pressed, do some server-side action.
+## 1. The `admin_post` action
 
-For example, let's say you want a "*Hello World*" button that echoes a "*Hello World*" on screen.
+The `admin_post_{$plugin_action}` dynamic action is triggered when we call the URL:
+`/wp-admin/admin-post.php?action={$plugin_action}`
 
-You have these options:
+### 1.1. Hello, World!
 
-| Method              | AJAX | NON-AJAX | Front-End or Admin? |
-|:-------------------:|:----:|:--------:|:-------------------:|
-| admin_post_*        | YES  | YES      | Admin only          |
-| admin_post_nopriv_* | YES  | YES      | Both                |
-| Ajax API            | YES  | NO       | Both                |
-| REST API            | YES  | NO       | Both                |
-| Router method       | YES  | YES      | Both                |
-
----
-
-For **non-Ajax**, use the dynamic hook `admin_post_{$plugin_action}`.
-
-For **Ajax**, you have two standard options: `Ajax API` and `REST API`. Learn more about them [here](/2019/07/wordpress-ajax-rest-api/). You can also use `admin_post_*` for Ajax, but it is not standard.
-
-Alternatively, as a workaround, you can implement a "**router**" (Ajax and non-Ajax), which consists of intercept every single HTTP request and call our custom method if the URL and parameters match our route. But save this method for scenarios where you can't use the other solutions (it is not a standard way to communicate with the server).
-
-### 9.1. `admin_post_{$plugin_action}`
-
-Add this code to the constructor:
+Let's show a `Hello, World!` when we call the URL `/wp-admin/admin-post.php?action=myplugin_hello`.
 
 ```php
-// my-plugin/my-plugin.php
-public function __construct() {
-  /** Fired on authenticated POST /wp-admin/admin-post.php?action=myplugin_hello. */
-  add_action( 'admin_post_myplugin_hello', [ $this, 'hello_callback' ] );
+/** Fired on authenticated GET,POST /wp-admin/admin-post.php?action=myplugin_hello. */
+add_action( 'admin_post_myplugin_hello', 'hello_callback' );
+
+function hello_callback() {
+  echo "Hello, World!";
 }
 ```
 
-This calls `hello_callback()` on an authenticated `POST /wp-admin/admin-post.php?action=myplugin_hello` requests.
+Now, call the URL on your browser:
+![Hello World on screen](./admin-post-hello-world.png)
+
+The call can be either a POST or a GET, but must be from an authenticated user.
 
 ::: warning
-**Note 1:** In order to avoid conflict with other plugins, add your slug to the action name. In other words, **prefer "myplugin_hello" instead of "hello"**.
+To avoid conflict with other plugins, add your slug to the action name. In other words, **prefer "myplugin_hello" instead of "hello"**.
 :::
 
-::: warning
-**Note 2:** This should be implemented in the `__construct()` constructor. It won't work if you implement it on "admin_menu", "load-{$menu}, or any other specific action.
-:::
+## 1.2. `admin_post_nopriv`
 
-Then, implement the button and its form:
+## 1.3. Using to perform tasks
+
+## 1.4. Using for extra buttons
+
+Let's refactor our "Hello" button to use `admin_post`.
+
+Our previous code is:
+
+```php
+<?php
+function my_menu_html() {
+
+  // "Hello" button has been pressed.
+  $has_pressed_hello = isset( $_POST['submit-hello'] );
+  if ( $has_pressed_hello ) {
+    echo "<p style='background-color: red;'>World!</p>";
+  }
+
+  // Check if was properly saved.
+  $has_been_saved = isset( $_GET['settings-updated'] );
+  if ( $has_been_saved ) {
+    add_settings_error( 'my-plugin', 'success', 'Settings Saved', 'updated' );
+  }
+
+  // show error/update messages
+  settings_errors( 'my-plugin' );
+
+  ?>
+  <div class="wrap">
+    <h1><?php echo get_admin_page_title() ?></h1>
+
+    <!-- Main form. -->
+    <form id="form-main" method="post" action="options.php">
+      <?php settings_fields( 'my-plugin' ) ?>
+      <?php do_settings_sections( 'my-plugin' ) ?>
+    </form>
+
+    <!-- "Hello" form. -->
+    <form id="form-hello" method="post">
+    </form>
+
+    <!-- Buttons. -->
+    <div style="margin-top: 32px;">
+      <?php submit_button('Hello', 'secondary', 'submit-hello', false, [ 'form' => 'form-hello' ] ); ?>
+      <?php submit_button('Save', 'primary', 'submit', false , [ 'form' => 'form-main' ]); ?>
+    </div>
+  </div>
+  <?php
+}
+```
+
+Instead of using the technique of sending data to the self page, let's send data to our custom URL.
+
+```php
+<?php
+/** Fired on authenticated GET,POST /wp-admin/admin-post.php?action=myplugin_hello. */
+add_action( 'admin_post_myplugin_hello', 'hello_callback' );
+
+function hello_callback() {
+  add_settings_error( 'my-plugin', 'info-hello', 'Hello, World!', 'info' );
+
+  /** Return to the last page. */
+  wp_redirect( $_SERVER['HTTP_REFERER'] );
+}
+
+function my_menu_html() {
+
+  // Check if was properly saved.
+  $has_been_saved = isset( $_GET['settings-updated'] );
+  if ( $has_been_saved ) {
+    add_settings_error( 'my-plugin', 'success', 'Settings Saved', 'updated' );
+  }
+
+  // show error/update messages
+  settings_errors( 'my-plugin' );
+
+  ?>
+  <div class="wrap">
+    <h1><?php echo get_admin_page_title() ?></h1>
+
+    <!-- Main form. -->
+    <form id="form-main" method="post" action="options.php">
+      <?php settings_fields( 'my-plugin' ) ?>
+      <?php do_settings_sections( 'my-plugin' ) ?>
+    </form>
+
+    <!-- "Hello" form. -->
+    <form id="form-hello" method="post" action="admin-post.php">
+      <input type="hidden" name="action" value="myplugin_hello">
+    </form>
+
+    <!-- Buttons. -->
+    <div style="margin-top: 32px;">
+      <?php submit_button('Hello', 'secondary', 'submit-hello', false, [ 'form' => 'form-hello' ] ); ?>
+      <?php submit_button('Save', 'primary', 'submit', false , [ 'form' => 'form-main' ]); ?>
+    </div>
+  </div>
+  <?php
+}
+```
+
+## 1.5. Using it for AJAX
+
+## 1.6. Using it to create a portal
+
+---
 
 ```php
 <!-- my-plugin/my-plugin.php -->
-<form method="post" action="admin-post.php>
+<form method="post" action="admin-post.php">
   <input type="hidden" name="action" value="myplugin_hello">
   <?php submit_button( 'Hello World' ); ?>
 </form>

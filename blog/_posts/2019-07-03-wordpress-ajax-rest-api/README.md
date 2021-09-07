@@ -4,14 +4,14 @@ date: 2019-07-03
 tags: ['WordPress', 'PHP', 'WP Plugin Development']
 author: Daniel Loureiro
 ---
-WordPress has APIs to implement Ajax: `Ajax API` and `REST API`. Let's see how to use them.
+WordPress has two APIs to implement Ajax: `Ajax API` and `REST API`. Let's see how to use them.
 <!-- more -->
 
 - The `Ajax API` was the only option for many years. It consists of sending a POST request to `/wp-admin/admin-ajax.php`. The "admin" in the URL is misleading as it can be used either in the admin or in the front-end.
 
 - The `REST API` is more recent. WordPress released this API on version 4.4, and it can be considered a more modern approach for Ajax requests. It also allows for custom endpoints.
 
-Some people consider the REST API more complex and difficult to understand than the Ajax API, but it is up to you to choose one over the other. In the end, they both do the same things.
+Some people consider the REST API more complex and hard to understand than the Ajax API, but it is up to you to choose one over the other. In the end, they both do the same things.
 
 ---
 
