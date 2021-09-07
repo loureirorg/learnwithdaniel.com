@@ -1,75 +1,104 @@
 ---
-title: "WordPress: Show the current year on the footer"
-date: 2020-01-16
+title: "Creating Shortcodes on WordPress"
+date: 2019-09-20
 tags: ['WordPress', 'PHP']
 author: Daniel Loureiro
 ---
-Let's create a shortcode to show the current year.
+Shortcodes are strings that WordPress replace with dynamic content.
 <!-- more -->
 
-On `functions.php` (Appearance > Theme Editor > Theme Functions), add this code:
+I'm sure you know how to put a video from the library on an article. You write `[video src="my-video.mp4"]` in the paragraph and the video will show.
+
+WordPress replaces the `[video ...]` string with the actual video from your library. This is an example of shortcode usage. Shortcodes are strings enclosed by brackets `[]`.
+
+Shortcodes extend the editor. With them, you are not limited to Gutemberg's blocks, nor to text styling only. They allow us to add dynamic content provided by plugins.
+
+## Example:
+
+In this tutorial, we will create a "Hello World" shortcode. Put these codes in your `functions.php`.
+
+## 1. Self-closing tag: `[hello]`
 
 ```php
-/** Create [year] shortcode. */
-add_shortcode( 'year', 'year_callback' );
-function year_callback( $atts ) {
-    return '<span>'.date( 'Y' ).'</span>';
+add_shortcode( 'hello', 'hello_callback' );
+function hello_callback( $atts ) {
+    return "<span>Hello</span>";
 }
 ```
 
-Then, use it like this:
+## 2. Tag with attributes: `[hello color="blue"]`
 
-```html
-Copyleft © [year] LearnWithDaniel.com
+```php
+add_shortcode( 'hello', 'hello_callback' );
+function hello_callback( $atts ) {
+    $color = $atts['color'];
+    return "<span style='color: $color;'>Hello</span>";
+}
 ```
 
-That's it! WordPress will replace `[year]` with the actual current year on your pages and posts.
+Set default attributes with `shortcode_atts(...)`:
 
-## Alternative: Using JS
+```php
+add_shortcode( 'hello', 'hello_callback' );
+function hello_callback( $atts ) {
+    /** Default values. */
+    $a = shortcode_atts( [
+        'color' => 'black'
+    ], $atts );
 
-A problem with the previous solution is that if you are using a static page generator to speed-up your site, a technology that is getting common nowdays, it may display a wrong year. It may display the year of when the page was last updated instead of the current year.
+    /** Print "Hello". */
+    $color = $a['color'];
+    return "<span style='color: $color;'>Hello</span>";
+}
+```
 
-To fix it, you can implement it on JS instead. A JS solution will fix the issue when using static page generators, as the year will be calculated on the user side. Also, this solution requires no changes on `functions.php`.
+### Security – Always escape vars when printing: `esc_attr(...)`
 
-Add this JS code (through a Custom HTML Widget, or on the theme customization "Appearance > Customize", or through a plugin like "Custom CSS & JS"):
+```php
+add_shortcode( 'hello', 'hello_callback' );
+function hello_callback( $atts ) {
+    /** Default values. */
+    $a = shortcode_atts( [
+        'color' => 'black'
+    ], $atts );
 
-```js
-document.querySelectorAll('.year').forEach(
-    function(e) {
-        e.innerHTML = new Date().getFullYear()
+    /** Print "Hello". */
+    $color = esc_attr( $a['color'] );
+    return "<span style='color: $color;'>Hello</span>";
+}
+```
+
+## 3. Enclosed Content tag: `[hello]World[/hello]`
+
+The content is the second argument:
+
+```php
+add_shortcode( 'hello', 'hello_callback' );
+function hello_callback( $atts, $contents = null ) {
+    /** Default attributes. */
+    $a = shortcode_atts( [
+        'color' => 'black'
+    ], $atts );
+
+    /** Print "Hello". */
+    $color = esc_attr( $a['color'] );
+    return "<span style='color: $color;'>Hello ". esc_attr( $contents )."</span>";
+}
+```
+
+## 4. Many tags, one callback
+
+You can use the same callback for multiple tags. In this case, use the third argument `$tag` to differentiate tags.
+
+Let's implement two tags, `[hello]` and `[world]`, on a single callback:
+
+```php
+add_shortcode( 'hello', 'hello_callback' );
+add_shortcode( 'world', 'hello_callback' );
+function hello_callback( $atts, $contents = null, $tag ) {
+    if ( 'hello' === $tag ) {
+        return "<span>Hello</span>";
     }
-);
-```
-
-Then use it like this:
-
-```html
-Copyleft © <span class="year"></span> LearnWithDaniel.com
-```
-
-## An over-engineered solution: Shortcode with a JS callback
-
-A problem with the JS solution is that it uses the user's clock. If the user's clock is wrong and set to 5 years ago, it will show "2016" instead of "2021" for example (considering we are in 2021).
-
-Also, if the JS is broken or disabled, it won't show the year.
-
-To fix it, we can have the best of both worlds. We render the year on the server side, and update it via JS. If JS is not working, it will still show an year.
-
-Use the shortcode `[year]` and this on `functions.php`:
-
-```php
-/** Create [year] shortcode. */
-add_shortcode( 'year', 'year_callback' );
-function year_callback( $atts ) {
-    return '<span class="year">'.date('Y').'</span>';
-}
-
-/** Add a JS fallback to [year]. */
-add_action( 'wp_enqueue_scripts', 'year_script' );
-function year_script() {
-    $script = "document.querySelectorAll('.year').forEach(function(e) { e.innerHTML = new Date().getFullYear() })";
-    wp_register_script( 'year-script-handler', '' );
-    wp_enqueue_script( 'year-script-handler' );
-    wp_add_inline_script( 'year-script-handler', $script );
+    return "<span>World</span>";
 }
 ```
