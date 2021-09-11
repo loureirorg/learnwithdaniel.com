@@ -55,10 +55,10 @@ xdebug.remote_mode=req
 xdebug.remote_autostart=true
 
 # xdebug v3.x
-xdebug.log_level = 0
-xdebug.mode = debug
-xdebug.start_with_request = yes
-xdebug.client_port = 9000
+xdebug.log_level=0
+xdebug.mode=debug
+xdebug.start_with_request=trigger
+xdebug.client_port=9000
 ```
 
 ## 4. Install `PHP Debug` plugin on VSCode

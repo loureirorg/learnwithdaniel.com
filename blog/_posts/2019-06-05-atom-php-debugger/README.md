@@ -55,9 +55,9 @@ xdebug.remote_mode=req
 xdebug.remote_autostart=true
 
 # xdebug v3.x
-xdebug.mode = debug
-xdebug.start_with_request = yes
-xdebug.client_port = 9000
+xdebug.mode=debug
+xdebug.start_with_request=trigger
+xdebug.client_port=9000
 ```
 
 ## 4. Install `php-debug` plugin on Atom
