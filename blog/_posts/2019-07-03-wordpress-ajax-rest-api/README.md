@@ -99,15 +99,12 @@ The `sanitize_*` functions list:
 
 You can also use PHP's core helpers like `intval( $value )` or create your own custom satinization method.
 
-## [SECURITY] Nonces – To use them or not?
+## [SECURITY] Nonces
 
 Nonces prevent hackers from tricking you into clicking on a link that does a destructive action. If you are logged in as an admin user, a permission checking won't help you if you are tricked to click on a email with a link that deletes all your blog posts.
 
 There are two methods to work with nonces: `wp_create_nonce()` and `check_ajax_referer( $nonce )`. The first method creates a random string to be sent by the Ajax call. The second method verifies if the hash is valid.
 
-::: success
-Personally, **I don't think it is necessary to use nonces with the Ajax API**. Clicking on links won't cause any harm as they generate a GET request and Ajax API requires a POST. Even if you enter in a shady website that does a POST call to your website (through JS), the CORS protection of your browser will block the request. But that's my opinion. Use your best judgment to decide.
-:::
 
 ## 2. REST API
 

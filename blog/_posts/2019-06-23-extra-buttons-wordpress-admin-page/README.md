@@ -292,8 +292,13 @@ And now everything works well:
 
 ---
 
-This all works good, but there's a more flexible alternative: the `admin_post` action.
+<!-- This all works good, but there's a more flexible alternative: the `admin_post` action.
 
 With this action we can create custom HTTP endpoints to process custom code. The endpoint can even be accessed outside our page - either by other plugins or on the front-end.
 
-Let's see how in the next article.
+Let's see how in the next article. -->
+So far, we have only worked on the admin side, the "back-end" in the WordPress lingo.
+
+In the next article, let's start working on the user side, the "front-end" in the WordPress terminology.
+
+We will see how to create shortcodes. Shortcodes are a way to integrate plugins into pages and posts content.
