@@ -1,6 +1,6 @@
 ---
 title: "Create Admin Menus for WordPress"
-date: 2019-06-17
+date: 2019-06-16
 tags: ['WordPress', 'PHP', 'WP Plugin Development']
 author: Daniel Loureiro
 ---
@@ -209,7 +209,7 @@ Let's reduce our code with some core helpers.
 </form>
 ```
 
-This helper outputs this for us:
+The helper outputs this for us:
 
 ```html
 <input
@@ -244,7 +244,7 @@ function my_menu_html() { ?>
 }
 ```
 
-That's how it looks like:
+That's how it looks now:
 
 ![Same form but with helpers](./wp-simple-form-with-helpers-cut.png)
 

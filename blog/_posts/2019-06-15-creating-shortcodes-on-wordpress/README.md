@@ -4,13 +4,13 @@ date: 2019-06-15
 tags: ['WordPress', 'PHP']
 author: Daniel Loureiro
 ---
-In the previous article, we printed a "Hello, World" on screen. It worked, but it was clunky, ugly-looking. That's not how plugins output to pages.
+In the previous article, we printed a "Hello, World" on screen. It works, but it is clunky, ugly-looking. That's not how plugins output to pages.
 
-The standard way plugins print content is through `shortcodes`.
+The most common way plugins interact with pages, printing content on them, is through `shortcodes`.
 
-Shortcodes are small bits of text that we write in pages. They are enclosed by brackets `[]`, for example, `[hello]`.
+Shortcodes are small bits of text that we write in articles. They are enclosed by brackets `[]`, for example, `[hello]`.
 
-When WordPress renders the page, it replaces the shortcodes with plugin's output, for example, `"Hello, World!"`.
+When WordPress renders the article, it replaces the shortcodes with plugin's output, for example, `"Hello, World!"`.
 <!-- more -->
 
 Shortcodes are powerful because they extend the editor. With them, your content is not limited to Gutemberg's blocks. You can create a plugin to add a calendar to pages, or add forms, and much more.
