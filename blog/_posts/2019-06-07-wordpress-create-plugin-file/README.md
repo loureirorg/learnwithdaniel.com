@@ -1,55 +1,12 @@
 ---
-title: "WordPress Plugin Development Tutorial: From Zero to Hero"
-date: 2019-06-04
+title: Creating a Plugin file for WordPress
+date: 2019-06-06
 tags: ['WordPress', 'PHP']
 author: Daniel Loureiro
+status: draft
 ---
-This is the first part of my **WordPress Plugin Development** tutorial. [Check second part here](/2019/06/wordpress-create-menu/).
+Let's put our code in an actual plugin instead of using `functions.php`.
 <!-- more -->
-
-## 0. My dev environment
-
-- **OS:** Linux (Ubuntu)
-- **Editor:** Atom editor + PHP debugger + linters (PHPCS and PHPMD)
-- **Web-server:** built-in PHP web-server (`php -S localhost:3000`)
-
-I use **Linux** and Atom editor with PHP debugger and PHPCS enabled. But any code editor works.
-
-For **coding styling**, I recommend using the [WordPress coding standards](https://make.wordpress.org/core/handbook/best-practices/coding-standards/php/), but PSR is also acceptable although controversial. Avoid using your own code styling, especially if other people are going to work on your code.
-
-For **Windows**, "Local by Flywheel" is a popular choice.
-
-## 1. WP-CLI
-
-In this tutorial we use `WP-CLI`, the official command-line tool for interacting with and managing your WordPress sites.
-
-For install instructions visit: [https://wp-cli.org/](https://wp-cli.org/)
-
-## 2. Have a WordPress instance for the plugin
-
-We need a running copy of WordPress. This will be the shell for our plugin.
-
-Either install a brand new WordPress copy (recommended) or work on an existing project.
-
-You can quickly download/extract WordPress with WP-CLI:
-
-```bash
-mkdir my-wp
-cd my-wp
-
-wp core download
-  Downloading WordPress 5.2.3 (en_US)...
-  md5 hash verified: bde83b629bc7a833f7000bc522cde120
-
-ls
-  index.php        wp-blog-header.php    wp-includes        wp-settings.php
-  license.txt      wp-comments-post.php  wp-links-opml.php  wp-signup.php
-  readme.html      wp-config-sample.php  wp-load.php        wp-trackback.php
-  wp-activate.php  wp-content            wp-login.php       xmlrpc.php
-  wp-admin         wp-cron.php           wp-mail.php
-```
-
-## 3. Our first plugin
 
 Let's create our `my-plugin` plugin with `wp-cli`. In the WordPress root folder, run:
 
