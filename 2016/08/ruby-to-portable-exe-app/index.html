@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Ruby to EXE – Turn ruby scripts into portable executable apps | Learn with Daniel - A learner diary</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/favicon-128.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="description" content="A learner diary">
+    
+    <link rel="preload" href="/assets/css/0.styles.e0c1612b.css" as="style"><link rel="preload" href="/assets/js/app.5632ea00.js" as="script"><link rel="preload" href="/assets/js/3.9e1cc85f.js" as="script"><link rel="preload" href="/assets/js/47.07c3328b.js" as="script"><link rel="preload" href="/assets/js/22.2ffb8c95.js" as="script"><link rel="prefetch" href="/assets/js/10.ab7cb67b.js"><link rel="prefetch" href="/assets/js/11.5242956c.js"><link rel="prefetch" href="/assets/js/12.59c1b827.js"><link rel="prefetch" href="/assets/js/13.eb4c0cc0.js"><link rel="prefetch" href="/assets/js/14.cd6385da.js"><link rel="prefetch" href="/assets/js/15.f6ed5cf0.js"><link rel="prefetch" href="/assets/js/16.60e48bf7.js"><link rel="prefetch" href="/assets/js/17.6ade2139.js"><link rel="prefetch" href="/assets/js/18.f3523bb9.js"><link rel="prefetch" href="/assets/js/19.0cd9be83.js"><link rel="prefetch" href="/assets/js/20.74e5d0bb.js"><link rel="prefetch" href="/assets/js/21.057bc373.js"><link rel="prefetch" href="/assets/js/23.45611473.js"><link rel="prefetch" href="/assets/js/24.2c5aaad4.js"><link rel="prefetch" href="/assets/js/25.53994f14.js"><link rel="prefetch" href="/assets/js/26.4b88dd5e.js"><link rel="prefetch" href="/assets/js/27.33da5e65.js"><link rel="prefetch" href="/assets/js/28.e1bc1897.js"><link rel="prefetch" href="/assets/js/29.41a44f48.js"><link rel="prefetch" href="/assets/js/30.b52a01e3.js"><link rel="prefetch" href="/assets/js/31.32e50696.js"><link rel="prefetch" href="/assets/js/32.9870be67.js"><link rel="prefetch" href="/assets/js/33.6be9bedc.js"><link rel="prefetch" href="/assets/js/34.95333d7a.js"><link rel="prefetch" href="/assets/js/35.b90c291b.js"><link rel="prefetch" href="/assets/js/36.853d11aa.js"><link rel="prefetch" href="/assets/js/37.fe79cc5b.js"><link rel="prefetch" href="/assets/js/38.aef7ef02.js"><link rel="prefetch" href="/assets/js/39.dca7aa67.js"><link rel="prefetch" href="/assets/js/4.37520176.js"><link rel="prefetch" href="/assets/js/40.d659d938.js"><link rel="prefetch" href="/assets/js/41.83aeacc5.js"><link rel="prefetch" href="/assets/js/42.610c5aca.js"><link rel="prefetch" href="/assets/js/43.e9222b3a.js"><link rel="prefetch" href="/assets/js/44.9858f816.js"><link rel="prefetch" href="/assets/js/45.b0f0f5f2.js"><link rel="prefetch" href="/assets/js/46.492b33ea.js"><link rel="prefetch" href="/assets/js/48.b2d7476f.js"><link rel="prefetch" href="/assets/js/49.9fd583ed.js"><link rel="prefetch" href="/assets/js/5.b259d54e.js"><link rel="prefetch" href="/assets/js/50.9e6ef79d.js"><link rel="prefetch" href="/assets/js/51.8c3776f7.js"><link rel="prefetch" href="/assets/js/52.92a4b980.js"><link rel="prefetch" href="/assets/js/53.3e72d3bc.js"><link rel="prefetch" href="/assets/js/54.e1e107ff.js"><link rel="prefetch" href="/assets/js/55.418768d6.js"><link rel="prefetch" href="/assets/js/56.95ca3ac0.js"><link rel="prefetch" href="/assets/js/57.ea7fb933.js"><link rel="prefetch" href="/assets/js/58.40c5610c.js"><link rel="prefetch" href="/assets/js/59.5af9d54f.js"><link rel="prefetch" href="/assets/js/6.70c0bce3.js"><link rel="prefetch" href="/assets/js/60.0c66c22f.js"><link rel="prefetch" href="/assets/js/61.05b88817.js"><link rel="prefetch" href="/assets/js/62.483e5481.js"><link rel="prefetch" href="/assets/js/63.6ab28e82.js"><link rel="prefetch" href="/assets/js/7.8d26dacd.js"><link rel="prefetch" href="/assets/js/8.6beb7cbb.js"><link rel="prefetch" href="/assets/js/9.5015eb07.js"><link rel="prefetch" href="/assets/js/vuejs-paginate.92df942c.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e0c1612b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="dark:bg-gray-1000 bg-white dark:text-sepia text-gray-900" data-v-335698aa><header class="border-b-4 dark:border-green-700 border-primary" data-v-335698aa><div class="container mx-auto flex h-20 px-6 items-center"><a href="/" class="dark:text-green-700 text-primary text-3xl router-link-active">
+            Learn With Daniel
+        </a></div></header> <div class="container mx-auto px-6 md:px-16 py-8 max-w-screen-md" data-v-335698aa><div class="py-8 md:py-16" data-v-335698aa><div data-v-335698aa><span class="dark:bg-gray-800 bg-gray-100 px-3 py-1 mx-1 rounded-full uppercase text-xs font-medium dark:text-green-700 tracking-wider" data-v-335698aa>
+                    Ruby
+                </span><span class="dark:bg-gray-800 bg-gray-100 px-3 py-1 mx-1 rounded-full uppercase text-xs font-medium dark:text-green-700 tracking-wider" data-v-335698aa>
+                    Tools
+                </span></div> <h1 class="dark:text-green-500 text-4xl md:text-6xl py-6" data-v-335698aa>Ruby to EXE – Turn ruby scripts into portable executable apps</h1> <p class="author text-sm" data-v-335698aa>
+                by <span class="text-base font-bold" data-v-335698aa>Daniel Loureiro</span>
+                on <time class="mr-3" data-v-335698aa>Aug 21, 2016</time> <span class="reading-time text-xs uppercase py-4 block md:inline-block md:py-9" data-v-335698aa><vp-icon size="1.5em" name="clock-best" class="inline-block" data-v-335698aa></vp-icon>
+                    5 min read
+                </span></p></div> <div class="post-wrap text-xl leading-10 pb-8" data-v-335698aa><div class="content__default" data-v-335698aa><p>Let's see how to compile ruby scripts into standalone binaries.
+</p> <h2 id="this-method-works-with"><a href="#this-method-works-with" class="header-anchor">#</a> This method works with</h2> <ul><li>Rails apps (your executable file will be a portable webserver);</li> <li>Scripts with gems;</li> <li>Simple, single-source file scripts;</li> <li>Multiple source file scripts;</li></ul> <p>The final app will be a single executable file that can run on systems without a ruby interpreter installed.</p> <hr> <h2 id="update"><a href="#update" class="header-anchor">#</a> UPDATE</h2> <p><strong>I developed a gem to automate this process.</strong> Check it out:
+<a href="https://github.com/loureirorg/rb2exe" target="_blank" rel="noopener noreferrer">https://github.com/loureirorg/rb2exe<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h3 id="usage"><a href="#usage" class="header-anchor">#</a> Usage</h3> <div class="language-bash extra-class"><pre class="language-bash"><code>gem <span class="token function">install</span> rb2exe
+
+<span class="token builtin class-name">echo</span> <span class="token string">&quot;puts 'Hello world'&quot;</span> <span class="token operator">&gt;</span> test.rb
+
+rb2exe test.rb
+./test
+    Hello world
+</code></pre></div><hr> <h2 id="how-this-works-step-by-step"><a href="#how-this-works-step-by-step" class="header-anchor">#</a> How this works, step-by-step</h2> <h3 id="first-let-s-create-a-hello-world-app"><a href="#first-let-s-create-a-hello-world-app" class="header-anchor">#</a> First, let's create a Hello World app</h3> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">mkdir</span> hello
+<span class="token builtin class-name">cd</span> hello
+<span class="token builtin class-name">echo</span> <span class="token string">&quot;puts 'Hello world'&quot;</span> <span class="token operator">&gt;</span> test.rb
+ruby test.rb
+    Hello world
+</code></pre></div><p>This method uses <strong>Ruby Traveler</strong> and pack everything into a self-extract file.</p> <p>Ruby Traveler is just a static folder with a standalone &quot;ruby&quot; executable. The plan here is to add Ruby Traveler's folder and binaries to our project and compress everything into a single self-extractable zip file. This self-extractable file will extract the compressed data into a temporary folder and execute the main ruby script (ex. <code>test.rb</code>).</p> <p>As this is based on Ruby Traveler (by Phusion), which seems to be a stalled project, we are locked to the only versions they support – the latest one is 2.2.2. 😦</p> <div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>If you want to use different Ruby versions, <strong>other than 2.2.2</strong>, I recommend adapting this script to zw693's Traveling Ruby, which supports <strong>ALL Ruby versions</strong>:
+<a href="https://github.com/zw963/traveling-ruby" target="_blank" rel="noopener noreferrer">https://github.com/zw963/traveling-ruby<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></div> <hr> <h2 id="part-i-standalone-ruby"><a href="#part-i-standalone-ruby" class="header-anchor">#</a> Part I: Standalone Ruby</h2> <h3 id="your-ruby-version-should-be-2-2-2-64-bits"><a href="#your-ruby-version-should-be-2-2-2-64-bits" class="header-anchor">#</a> Your ruby version should be <code>2.2.2</code>, 64 bits</h3> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token builtin class-name">echo</span> <span class="token variable">$RUBY_VERSION</span>
+ruby-2.2.2
+</code></pre></div><div class="custom-block danger"><p class="custom-block-title">WARNING</p> <p>If your version is different, please install the 2.2.2 (e.g. <code>rvm use 2.2.2</code>).
+<strong>This will NOT work with 2.2.0, 2.2.3, 2.1, etc.</strong></p></div> <h3 id="duplicate-the-project-folder-naming-it-as-app"><a href="#duplicate-the-project-folder-naming-it-as-app" class="header-anchor">#</a> Duplicate the project folder, naming it as &quot;app&quot;</h3> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># ~/hello/</span>
+<span class="token builtin class-name">cd</span> <span class="token punctuation">..</span>
+<span class="token function">cp</span> -r -pa hello app
+
+<span class="token builtin class-name">cd</span> hello
+</code></pre></div><h3 id="in-the-project-folder-create-a-package-payload-lib-ruby-sub-folder"><a href="#in-the-project-folder-create-a-package-payload-lib-ruby-sub-folder" class="header-anchor">#</a> In the project folder, create a <code>.package/payload/lib/ruby</code> sub-folder</h3> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># ~/hello/</span>
+<span class="token function">mkdir</span> -p .package/payload/lib/ruby
+</code></pre></div><h3 id="move-the-app-folder-to-package-payload-lib"><a href="#move-the-app-folder-to-package-payload-lib" class="header-anchor">#</a> Move the &quot;app&quot; folder to <code>.package/payload/lib</code></h3> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># ~/hello/</span>
+<span class="token function">mv</span> <span class="token punctuation">..</span>/app .package/payload/lib
+tree -a
+    <span class="token builtin class-name">.</span>
+    ├── .package
+    │   └── payload
+    │       └── lib
+    │           ├── app
+    │           │   └── test.rb
+    │           └── ruby
+    └── test.rb
+</code></pre></div><h3 id="download-ruby-traveler-2-2-2-64-bits-5-6m-and-unzip-it-on-package-payload-lib-ruby"><a href="#download-ruby-traveler-2-2-2-64-bits-5-6m-and-unzip-it-on-package-payload-lib-ruby" class="header-anchor">#</a> Download ruby traveler 2.2.2 64 bits (5.6M), and unzip it on <code>.package/payload/lib/ruby</code></h3> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># ~/hello/</span>
+<span class="token builtin class-name">cd</span> .package/payload/lib/ruby
+
+<span class="token comment"># ~/hello/.package/payload/lib/ruby/</span>
+<span class="token function">wget</span> http://d6r77u77i8pq3.cloudfront.net/releases/traveling-ruby-20150715-2.2.2-linux-x86_64.tar.gz
+<span class="token function">tar</span> -xf traveling-ruby-20150715-2.2.2-linux-x86_64.tar.gz
+<span class="token function">rm</span> traveling-ruby-20150715-2.2.2-linux-x86_64.tar.gz
+</code></pre></div><h3 id="go-back-to-package-payload"><a href="#go-back-to-package-payload" class="header-anchor">#</a> Go back to <code>.package/payload/</code></h3> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># ~/hello/.package/payload/lib/ruby/</span>
+<span class="token builtin class-name">cd</span> <span class="token punctuation">..</span>/<span class="token punctuation">..</span>
+<span class="token builtin class-name">pwd</span>
+    ~/hello/.package/payload
+</code></pre></div><h3 id="create-a-wrapper-script-name-it-as-installer-sh"><a href="#create-a-wrapper-script-name-it-as-installer-sh" class="header-anchor">#</a> Create a wrapper script (name it as <code>installer.sh</code>)</h3> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># ~/hello/.package/payload/</span>
+<span class="token function">nano</span> installer.sh
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token shebang important">#!/bin/bash</span>
+<span class="token builtin class-name">set</span> -e
+
+<span class="token comment"># Figure out where this script is located.</span>
+<span class="token assign-left variable">SELFDIR</span><span class="token operator">=</span><span class="token string">&quot;<span class="token variable"><span class="token variable">`</span><span class="token function">dirname</span> <span class="token punctuation">\</span>&quot;$0<span class="token punctuation">\</span>&quot;<span class="token variable">`</span></span>&quot;</span>
+<span class="token assign-left variable">SELFDIR</span><span class="token operator">=</span><span class="token string">&quot;<span class="token variable"><span class="token variable">`</span><span class="token builtin class-name">cd</span> <span class="token punctuation">\</span>&quot;$SELFDIR<span class="token punctuation">\</span>&quot; <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">pwd</span><span class="token variable">`</span></span>&quot;</span>
+
+<span class="token comment">## GEMFILE</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -f <span class="token string">&quot;<span class="token variable">$SELFDIR</span>/lib/vendor/Gemfile&quot;</span> <span class="token punctuation">]</span>
+<span class="token keyword">then</span>
+  <span class="token comment"># Tell Bundler where the Gemfile and gems are.</span>
+  <span class="token builtin class-name">export</span> <span class="token assign-left variable">BUNDLE_GEMFILE</span><span class="token operator">=</span><span class="token string">&quot;<span class="token variable">$SELFDIR</span>/lib/vendor/Gemfile&quot;</span>
+  <span class="token builtin class-name">unset</span> BUNDLE_IGNORE_CONFIG
+
+  <span class="token comment"># Run the actual app using the bundled Ruby interpreter, with Bundler activated.</span>
+  <span class="token builtin class-name">exec</span> <span class="token string">&quot;<span class="token variable">$SELFDIR</span>/lib/ruby/bin/ruby&quot;</span> -rbundler/setup <span class="token string">&quot;<span class="token variable">$SELFDIR</span>/lib/app/test.rb&quot;</span>
+<span class="token keyword">else</span>
+  <span class="token builtin class-name">exec</span> <span class="token string">&quot;<span class="token variable">$SELFDIR</span>/lib/ruby/bin/ruby&quot;</span> <span class="token string">&quot;<span class="token variable">$SELFDIR</span>/lib/app/test.rb&quot;</span>
+<span class="token keyword">fi</span>
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># ~/hello/.package/payload/</span>
+<span class="token function">chmod</span> +x installer.sh
+</code></pre></div><p>Replace the <code>exec</code> lines with your actual command to start the application. Eg. for Rails apps, it should be:
+<code>RAILS_ENV=production exec &quot;$SELFDIR/lib/ruby/bin/ruby&quot; -rbundler/setup &quot;$SELFDIR/lib/app/bin/rails&quot; server</code></p> <div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>The previous script is based on the &quot;traveling ruby&quot; tutorial. If you want to understand this process better, you can follow the official &quot;traveling ruby&quot; instructions.</p></div> <hr> <h2 id="part-ii-gemfile"><a href="#part-ii-gemfile" class="header-anchor">#</a> Part II: Gemfile</h2> <p>If your project has a Gemfile, you need to follow these extra steps:</p> <h3 id="create-a-tmp-folder-on-package-payload-lib"><a href="#create-a-tmp-folder-on-package-payload-lib" class="header-anchor">#</a> Create a <code>tmp</code> folder on <code>.package/payload/lib</code></h3> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># ~/hello/.package/payload/</span>
+<span class="token builtin class-name">cd</span> lib
+
+<span class="token comment"># ~/hello/.package/payload/lib/</span>
+<span class="token function">mkdir</span> tmp
+<span class="token builtin class-name">cd</span> tmp
+</code></pre></div><h3 id="copy-the-gemfile-to-tmp"><a href="#copy-the-gemfile-to-tmp" class="header-anchor">#</a> Copy the <code>Gemfile</code> to <code>tmp</code></h3> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># ~/hello/.package/payload/lib/tmp/</span>
+<span class="token function">cp</span> <span class="token punctuation">..</span>/app/Gemfile* <span class="token builtin class-name">.</span>
+</code></pre></div><h3 id="download-gems-into-the-lib-vendor-folder"><a href="#download-gems-into-the-lib-vendor-folder" class="header-anchor">#</a> Download gems into the <code>lib/vendor</code> folder</h3> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># ~/hello/.package/payload/lib/tmp/</span>
+<span class="token assign-left variable">BUNDLE_IGNORE_CONFIG</span><span class="token operator">=</span><span class="token number">1</span> bundle <span class="token function">install</span> --path <span class="token punctuation">..</span>/vendor --without development
+</code></pre></div><h3 id="delete-tmp-folder"><a href="#delete-tmp-folder" class="header-anchor">#</a> Delete <code>tmp</code> folder</h3> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># ~/hello/.package/payload/lib/tmp/</span>
+<span class="token builtin class-name">cd</span> <span class="token punctuation">..</span>
+<span class="token function">rm</span> -Rf tmp
+</code></pre></div><h3 id="optional-delete-gem-s-cache-in-the-vendor-folder"><a href="#optional-delete-gem-s-cache-in-the-vendor-folder" class="header-anchor">#</a> [Optional] Delete gem's cache in the <code>vendor</code> folder</h3> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># ~/hello/.package/payload/lib/</span>
+<span class="token function">rm</span> -f vendor/*/*/cache/*
+</code></pre></div><h3 id="copy-the-gemfile-to-the-vendor-folder"><a href="#copy-the-gemfile-to-the-vendor-folder" class="header-anchor">#</a> Copy the <code>Gemfile</code> to the <code>vendor</code> folder</h3> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># ~/hello/.package/payload/lib/</span>
+<span class="token function">cp</span> app/Gemfile* vendor/
+</code></pre></div><h3 id="create-a-bundler-config"><a href="#create-a-bundler-config" class="header-anchor">#</a> Create a bundler config</h3> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># ~/hello/.package/payload/lib/</span>
+<span class="token function">mkdir</span> vendor/.bundle/
+<span class="token builtin class-name">cd</span> vendor/.bundle/
+
+<span class="token comment"># ~/hello/.package/payload/lib/vendor/.bundle/</span>
+<span class="token function">nano</span> config
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code>BUNDLE_PATH: <span class="token builtin class-name">.</span>
+BUNDLE_WITHOUT: development
+BUNDLE_DISABLE_SHARED_GEMS: <span class="token string">'1'</span>
+</code></pre></div><hr> <h2 id="part-iii-pack-everything-as-a-single-self-extract-file"><a href="#part-iii-pack-everything-as-a-single-self-extract-file" class="header-anchor">#</a> Part III: Pack everything as a single self-extract file</h2> <p>This part is based on <a href="https://www.linuxjournal.com/node/1005818" target="_blank" rel="noopener noreferrer">Jeff Parent's article<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>.</p> <h3 id="create-a-script-to-decompress-everything"><a href="#create-a-script-to-decompress-everything" class="header-anchor">#</a> Create a script to decompress everything</h3> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># ~/hello/.package/</span>
+<span class="token function">nano</span> decompress.sh
+</code></pre></div><p>The <code>.package/decompress.sh</code>:</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token shebang important">#!/bin/bash</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">TMPDIR</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span>mktemp -d /tmp/selfextract.XXXXXX<span class="token variable">`</span></span>
+
+<span class="token assign-left variable">ARCHIVE</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">awk</span> <span class="token string">'/^__ARCHIVE_BELOW__/ {print NR + 1; exit 0; }'</span> $0<span class="token variable">`</span></span>
+
+<span class="token function">tail</span> -n+<span class="token variable">$ARCHIVE</span> <span class="token variable">$0</span> <span class="token operator">|</span> <span class="token function">tar</span> -xz -C <span class="token variable">$TMPDIR</span>
+
+<span class="token assign-left variable">CDIR</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token builtin class-name">pwd</span><span class="token variable">`</span></span>
+<span class="token builtin class-name">cd</span> <span class="token variable">$TMPDIR</span>
+./installer.sh
+
+<span class="token builtin class-name">cd</span> <span class="token variable">$CDIR</span>
+<span class="token function">rm</span> -rf <span class="token variable">$TMPDIR</span>
+
+<span class="token builtin class-name">exit</span> <span class="token number">0</span>
+
+__ARCHIVE_BELOW__
+</code></pre></div><h3 id="package-builder"><a href="#package-builder" class="header-anchor">#</a> Package builder</h3> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># ~/hello/.package/</span>
+<span class="token function">nano</span> build.sh
+</code></pre></div><p>The <code>.package/build.sh</code>:</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token shebang important">#!/bin/bash</span>
+<span class="token builtin class-name">cd</span> payload
+<span class="token function">tar</span> cf <span class="token punctuation">..</span>/payload.tar ./*
+<span class="token builtin class-name">cd</span> <span class="token punctuation">..</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -e <span class="token string">&quot;payload.tar&quot;</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token function">gzip</span> payload.tar
+
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> -e <span class="token string">&quot;payload.tar.gz&quot;</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+        <span class="token function">cat</span> decompress.sh payload.tar.gz <span class="token operator">&gt;</span> output.sh
+    <span class="token keyword">else</span>
+        <span class="token builtin class-name">echo</span> <span class="token string">&quot;payload.tar.gz does not exist&quot;</span>
+        <span class="token builtin class-name">exit</span> <span class="token number">1</span>
+    <span class="token keyword">fi</span>
+<span class="token keyword">else</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">&quot;payload.tar does not exist&quot;</span>
+    <span class="token builtin class-name">exit</span> <span class="token number">1</span>
+<span class="token keyword">fi</span>
+
+<span class="token function">chmod</span> +x output.sh
+<span class="token builtin class-name">echo</span> <span class="token string">&quot;Self-extract file created&quot;</span>
+<span class="token builtin class-name">exit</span> <span class="token number">0</span>
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># ~/hello/.package/</span>
+<span class="token function">chmod</span> +x decompress.sh
+<span class="token function">chmod</span> +x build.sh
+./build.sh
+    Self-extract <span class="token function">file</span> created
+</code></pre></div><div class="custom-block success"><p>And that's it. You can now rename and distribute the generated &quot;output.sh&quot; file 😃</p></div></div></div> <hr class="my-12" data-v-335698aa> <div data-v-335698aa><h2 class="text-xl md:text-3xl pb-10 text-center" data-v-335698aa>Comments</h2> <!----></div></div> <footer class="py-4 bg-gray-800" data-v-335698aa><p class="text-center text-gray-600 text-xs">Copyright 2022 - Daniel Loureiro</p></footer></div><div class="global-ui"><!----><!----><!----></div></div>
+    <script src="/assets/js/app.5632ea00.js" defer></script><script src="/assets/js/3.9e1cc85f.js" defer></script><script src="/assets/js/47.07c3328b.js" defer></script><script src="/assets/js/22.2ffb8c95.js" defer></script>
+  </body>
+</html>

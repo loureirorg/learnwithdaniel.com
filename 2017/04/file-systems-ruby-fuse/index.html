@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Create a Filesystem with Ruby and FUSE | Learn with Daniel - A learner diary</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/favicon-128.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="description" content="A learner diary">
+    
+    <link rel="preload" href="/assets/css/0.styles.e0c1612b.css" as="style"><link rel="preload" href="/assets/js/app.5632ea00.js" as="script"><link rel="preload" href="/assets/js/3.9e1cc85f.js" as="script"><link rel="preload" href="/assets/js/49.9fd583ed.js" as="script"><link rel="preload" href="/assets/js/22.2ffb8c95.js" as="script"><link rel="prefetch" href="/assets/js/10.ab7cb67b.js"><link rel="prefetch" href="/assets/js/11.5242956c.js"><link rel="prefetch" href="/assets/js/12.59c1b827.js"><link rel="prefetch" href="/assets/js/13.eb4c0cc0.js"><link rel="prefetch" href="/assets/js/14.cd6385da.js"><link rel="prefetch" href="/assets/js/15.f6ed5cf0.js"><link rel="prefetch" href="/assets/js/16.60e48bf7.js"><link rel="prefetch" href="/assets/js/17.6ade2139.js"><link rel="prefetch" href="/assets/js/18.f3523bb9.js"><link rel="prefetch" href="/assets/js/19.0cd9be83.js"><link rel="prefetch" href="/assets/js/20.74e5d0bb.js"><link rel="prefetch" href="/assets/js/21.057bc373.js"><link rel="prefetch" href="/assets/js/23.45611473.js"><link rel="prefetch" href="/assets/js/24.2c5aaad4.js"><link rel="prefetch" href="/assets/js/25.53994f14.js"><link rel="prefetch" href="/assets/js/26.4b88dd5e.js"><link rel="prefetch" href="/assets/js/27.33da5e65.js"><link rel="prefetch" href="/assets/js/28.e1bc1897.js"><link rel="prefetch" href="/assets/js/29.41a44f48.js"><link rel="prefetch" href="/assets/js/30.b52a01e3.js"><link rel="prefetch" href="/assets/js/31.32e50696.js"><link rel="prefetch" href="/assets/js/32.9870be67.js"><link rel="prefetch" href="/assets/js/33.6be9bedc.js"><link rel="prefetch" href="/assets/js/34.95333d7a.js"><link rel="prefetch" href="/assets/js/35.b90c291b.js"><link rel="prefetch" href="/assets/js/36.853d11aa.js"><link rel="prefetch" href="/assets/js/37.fe79cc5b.js"><link rel="prefetch" href="/assets/js/38.aef7ef02.js"><link rel="prefetch" href="/assets/js/39.dca7aa67.js"><link rel="prefetch" href="/assets/js/4.37520176.js"><link rel="prefetch" href="/assets/js/40.d659d938.js"><link rel="prefetch" href="/assets/js/41.83aeacc5.js"><link rel="prefetch" href="/assets/js/42.610c5aca.js"><link rel="prefetch" href="/assets/js/43.e9222b3a.js"><link rel="prefetch" href="/assets/js/44.9858f816.js"><link rel="prefetch" href="/assets/js/45.b0f0f5f2.js"><link rel="prefetch" href="/assets/js/46.492b33ea.js"><link rel="prefetch" href="/assets/js/47.07c3328b.js"><link rel="prefetch" href="/assets/js/48.b2d7476f.js"><link rel="prefetch" href="/assets/js/5.b259d54e.js"><link rel="prefetch" href="/assets/js/50.9e6ef79d.js"><link rel="prefetch" href="/assets/js/51.8c3776f7.js"><link rel="prefetch" href="/assets/js/52.92a4b980.js"><link rel="prefetch" href="/assets/js/53.3e72d3bc.js"><link rel="prefetch" href="/assets/js/54.e1e107ff.js"><link rel="prefetch" href="/assets/js/55.418768d6.js"><link rel="prefetch" href="/assets/js/56.95ca3ac0.js"><link rel="prefetch" href="/assets/js/57.ea7fb933.js"><link rel="prefetch" href="/assets/js/58.40c5610c.js"><link rel="prefetch" href="/assets/js/59.5af9d54f.js"><link rel="prefetch" href="/assets/js/6.70c0bce3.js"><link rel="prefetch" href="/assets/js/60.0c66c22f.js"><link rel="prefetch" href="/assets/js/61.05b88817.js"><link rel="prefetch" href="/assets/js/62.483e5481.js"><link rel="prefetch" href="/assets/js/63.6ab28e82.js"><link rel="prefetch" href="/assets/js/7.8d26dacd.js"><link rel="prefetch" href="/assets/js/8.6beb7cbb.js"><link rel="prefetch" href="/assets/js/9.5015eb07.js"><link rel="prefetch" href="/assets/js/vuejs-paginate.92df942c.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e0c1612b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="dark:bg-gray-1000 bg-white dark:text-sepia text-gray-900" data-v-335698aa><header class="border-b-4 dark:border-green-700 border-primary" data-v-335698aa><div class="container mx-auto flex h-20 px-6 items-center"><a href="/" class="dark:text-green-700 text-primary text-3xl router-link-active">
+            Learn With Daniel
+        </a></div></header> <div class="container mx-auto px-6 md:px-16 py-8 max-w-screen-md" data-v-335698aa><div class="py-8 md:py-16" data-v-335698aa><div data-v-335698aa><span class="dark:bg-gray-800 bg-gray-100 px-3 py-1 mx-1 rounded-full uppercase text-xs font-medium dark:text-green-700 tracking-wider" data-v-335698aa>
+                    Ruby
+                </span><span class="dark:bg-gray-800 bg-gray-100 px-3 py-1 mx-1 rounded-full uppercase text-xs font-medium dark:text-green-700 tracking-wider" data-v-335698aa>
+                    FUSE
+                </span></div> <h1 class="dark:text-green-500 text-4xl md:text-6xl py-6" data-v-335698aa>Create a Filesystem with Ruby and FUSE</h1> <p class="author text-sm" data-v-335698aa>
+                by <span class="text-base font-bold" data-v-335698aa>Daniel Loureiro</span>
+                on <time class="mr-3" data-v-335698aa>Apr 18, 2017</time> <span class="reading-time text-xs uppercase py-4 block md:inline-block md:py-9" data-v-335698aa><vp-icon size="1.5em" name="clock-best" class="inline-block" data-v-335698aa></vp-icon>
+                    2 min read
+                </span></p></div> <div class="post-wrap text-xl leading-10 pb-8" data-v-335698aa><div class="content__default" data-v-335698aa><p>Let's see how to create a file system (CowFS) with Ruby and FUSE in simple steps.
+</p> <p>In 5 minutes you will be able to create your own file system.</p> <div class="youtube"><iframe title="Tutorial: Create a File System in Ruby" src="https://www.youtube.com/embed/1GiiQtkXCl0?feature=oembed" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" width="1200" height="900" frameborder="0"></iframe></div> <div class="iframe"><iframe src="https://docs.google.com/presentation/d/1LiwRushgbJNHhdMrIS_9APJFZ8MI6XYLX5YxXWMSq9w/embed?start=false&amp;loop=false&amp;delayms=3000" allowfullscreen="allowfullscreen" width="960" height="569"></iframe></div> <h2 id="commands"><a href="#commands" class="header-anchor">#</a> Commands</h2> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">sudo</span> gem <span class="token function">install</span> rfusefs
+</code></pre></div><h2 id="basic-code"><a href="#basic-code" class="header-anchor">#</a> Basic code</h2> <div class="language-ruby extra-class"><pre class="language-ruby"><code><span class="token comment"># main.rb</span>
+<span class="token keyword">require</span> <span class="token string">'rfusefs'</span>
+
+<span class="token keyword">class</span> <span class="token class-name">CowFS</span>
+  <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">contents</span></span><span class="token punctuation">(</span>path<span class="token punctuation">)</span>
+    <span class="token punctuation">[</span><span class="token string">'rose.txt'</span><span class="token punctuation">]</span>
+  <span class="token keyword">end</span>
+
+  <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">file</span></span><span class="token operator">?</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span>
+    path <span class="token operator">==</span> <span class="token string">'/rose.txt'</span>
+  <span class="token keyword">end</span>
+
+  <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">read_file</span></span><span class="token punctuation">(</span>path<span class="token punctuation">)</span>
+    <span class="token string">&quot;Moo?!\n&quot;</span>
+  <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+
+cowfs <span class="token operator">=</span> <span class="token constant">CowFS</span><span class="token punctuation">.</span><span class="token keyword">new</span>
+<span class="token constant">FuseFS</span><span class="token punctuation">.</span>start<span class="token punctuation">(</span>cowfs<span class="token punctuation">,</span> <span class="token string">'/mnt/test'</span><span class="token punctuation">)</span>
+</code></pre></div><p>Then, run (in one terminal) and test (in another):</p> <div class="language-bash extra-class"><pre class="language-bash"><code>ruby main.rb
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">ls</span> /mnt/test
+  rose.txt
+<span class="token function">cat</span> /mnt/test/rose.txt
+  Moo?<span class="token operator">!</span>
+</code></pre></div><h2 id="binary-files"><a href="#binary-files" class="header-anchor">#</a> Binary files</h2> <div class="language-ruby extra-class"><pre class="language-ruby"><code><span class="token comment"># main.rb</span>
+<span class="token keyword">def</span> <span class="token method-definition"><span class="token function">contents</span></span><span class="token punctuation">(</span>path<span class="token punctuation">)</span>
+  <span class="token punctuation">[</span><span class="token string">'rose.txt'</span><span class="token punctuation">,</span> <span class="token string">'bessie.jpg'</span><span class="token punctuation">]</span>
+<span class="token keyword">end</span>
+
+<span class="token keyword">def</span> <span class="token method-definition"><span class="token function">read_file</span></span><span class="token punctuation">(</span>path<span class="token punctuation">)</span>
+  <span class="token keyword">if</span> path <span class="token operator">==</span> <span class="token string">'/rose.txt'</span>
+    <span class="token string">&quot;Moo?!\n&quot;</span>
+  <span class="token keyword">else</span>
+    <span class="token builtin">File</span><span class="token punctuation">.</span>binread<span class="token punctuation">(</span><span class="token string">'/home/daniel/Pictures/some_picture.jpg'</span><span class="token punctuation">)</span>
+  <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+</code></pre></div><h2 id="size-time"><a href="#size-time" class="header-anchor">#</a> Size / Time</h2> <div class="language-ruby extra-class"><pre class="language-ruby"><code><span class="token comment"># main.rb</span>
+<span class="token keyword">def</span> <span class="token method-definition"><span class="token function">size</span></span><span class="token punctuation">(</span>path<span class="token punctuation">)</span>
+  <span class="token keyword">if</span> path <span class="token operator">==</span> <span class="token string">'/rose.txt'</span>
+    <span class="token number">6</span>
+  <span class="token keyword">elsif</span> path <span class="token operator">==</span> <span class="token string">'/bessie.jpg'</span>
+    <span class="token number">888</span>_000
+  <span class="token keyword">else</span>
+    raw_read<span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">.</span>length
+  <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+
+<span class="token keyword">def</span> <span class="token method-definition"><span class="token function">times</span></span><span class="token punctuation">(</span>path<span class="token punctuation">)</span>
+  <span class="token keyword">if</span> path <span class="token operator">==</span> <span class="token string">'/rose.txt'</span>
+    year<span class="token punctuation">,</span> month<span class="token punctuation">,</span> day<span class="token punctuation">,</span> hour<span class="token punctuation">,</span> min<span class="token punctuation">,</span> sec <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">2017</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">17</span><span class="token punctuation">,</span> <span class="token number">13</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">59.99</span><span class="token punctuation">]</span>
+    atime <span class="token operator">=</span> mtime <span class="token operator">=</span> ctime <span class="token operator">=</span> <span class="token builtin">Time</span><span class="token punctuation">.</span><span class="token keyword">new</span><span class="token punctuation">(</span>year<span class="token punctuation">,</span> month<span class="token punctuation">,</span> day<span class="token punctuation">,</span> hour<span class="token punctuation">,</span> min<span class="token punctuation">,</span> sec<span class="token punctuation">)</span><span class="token punctuation">.</span>to_f
+    <span class="token keyword">return</span> <span class="token punctuation">[</span>atime<span class="token punctuation">,</span> mtime<span class="token punctuation">,</span> ctime<span class="token punctuation">]</span>
+  <span class="token keyword">else</span>
+    <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span>
+  <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+</code></pre></div><h2 id="raw"><a href="#raw" class="header-anchor">#</a> RAW</h2> <div class="language-ruby extra-class"><pre class="language-ruby"><code><span class="token comment"># main.rb</span>
+<span class="token keyword">def</span> <span class="token method-definition"><span class="token function">raw_open</span></span><span class="token punctuation">(</span>path<span class="token punctuation">,</span> mode<span class="token punctuation">,</span> raw<span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>path<span class="token punctuation">:</span> path<span class="token punctuation">}</span>
+<span class="token keyword">end</span>
+
+<span class="token keyword">def</span> <span class="token method-definition"><span class="token function">raw_read</span></span><span class="token punctuation">(</span>path<span class="token punctuation">,</span> offset<span class="token punctuation">,</span> size<span class="token punctuation">,</span> raw<span class="token punctuation">)</span>
+  <span class="token keyword">if</span> raw<span class="token punctuation">[</span><span class="token symbol">:path</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'/rose.txt'</span>
+    <span class="token string">&quot;Moo?!\n&quot;</span>
+  <span class="token keyword">else</span>
+    <span class="token builtin">File</span><span class="token punctuation">.</span>binread<span class="token punctuation">(</span><span class="token string">'/home/daniel/Pictures/some_picture.jpg'</span><span class="token punctuation">,</span> size<span class="token punctuation">,</span> offset<span class="token punctuation">)</span>
+  <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+</code></pre></div><h2 id="compiling"><a href="#compiling" class="header-anchor">#</a> Compiling</h2> <div class="language-ruby extra-class"><pre class="language-ruby"><code><span class="token comment"># Gemfile</span>
+source <span class="token string">'https://rubygems.org'</span> <span class="token keyword">do</span>
+  gem <span class="token string">'rfusefs'</span>
+<span class="token keyword">end</span>
+</code></pre></div><div class="language-ruby extra-class"><pre class="language-ruby"><code><span class="token comment"># main.rb</span>
+<span class="token constant">FuseFS</span><span class="token punctuation">.</span>mount<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">|</span>options<span class="token operator">|</span> cowfs <span class="token punctuation">}</span>
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code>rb2exe main.rb --add<span class="token operator">=</span>. --daemon -o mount.cowfs
+<span class="token function">chmod</span> +x mount.cowfs
+<span class="token function">mv</span> mount.cowfs /usr/sbin
+</code></pre></div><h2 id="on-boot-fstab"><a href="#on-boot-fstab" class="header-anchor">#</a> On boot (fstab)</h2> <div class="language-bash extra-class"><pre class="language-bash"><code>rb2exe main.rb --add<span class="token operator">=</span>. --daemon -o mount.cowfs
+<span class="token function">chmod</span> +x mount.cowfs
+<span class="token function">mv</span> mount.cowfs /usr/sbin
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># /etc/fstab</span>
+/usr/sbin/mount.cowfs /mnt/cows fuse user,noauto    <span class="token number">0</span>    <span class="token number">0</span>
+</code></pre></div><hr> <h2 id="links"><a href="#links" class="header-anchor">#</a> Links</h2> <ul><li><a href="https://github.com/lwoggardner/rfusefs/blob/master/lib/fuse/fusedir.rb" target="_blank" rel="noopener noreferrer">Full list of methods<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://linux.die.net/man/3/errno" target="_blank" rel="noopener noreferrer">List of exceptions/errors<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <hr class="my-12" data-v-335698aa> <div data-v-335698aa><h2 class="text-xl md:text-3xl pb-10 text-center" data-v-335698aa>Comments</h2> <!----></div></div> <footer class="py-4 bg-gray-800" data-v-335698aa><p class="text-center text-gray-600 text-xs">Copyright 2022 - Daniel Loureiro</p></footer></div><div class="global-ui"><!----><!----><!----></div></div>
+    <script src="/assets/js/app.5632ea00.js" defer></script><script src="/assets/js/3.9e1cc85f.js" defer></script><script src="/assets/js/49.9fd583ed.js" defer></script><script src="/assets/js/22.2ffb8c95.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+{
+    "name": "Learn With Daniel",
+    "short_name": "LWD Blog",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#fff",
+    "description": "A learner diary.",
+    "icons": [{
+      "src": "/favicon-128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    }]
+  }

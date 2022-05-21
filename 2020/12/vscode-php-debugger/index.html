@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>PHP Debugger on VSCode | Learn with Daniel - A learner diary</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/favicon-128.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="description" content="A learner diary">
+    
+    <link rel="preload" href="/assets/css/0.styles.e0c1612b.css" as="style"><link rel="preload" href="/assets/js/app.5632ea00.js" as="script"><link rel="preload" href="/assets/js/3.9e1cc85f.js" as="script"><link rel="preload" href="/assets/js/7.8d26dacd.js" as="script"><link rel="preload" href="/assets/js/22.2ffb8c95.js" as="script"><link rel="prefetch" href="/assets/js/10.ab7cb67b.js"><link rel="prefetch" href="/assets/js/11.5242956c.js"><link rel="prefetch" href="/assets/js/12.59c1b827.js"><link rel="prefetch" href="/assets/js/13.eb4c0cc0.js"><link rel="prefetch" href="/assets/js/14.cd6385da.js"><link rel="prefetch" href="/assets/js/15.f6ed5cf0.js"><link rel="prefetch" href="/assets/js/16.60e48bf7.js"><link rel="prefetch" href="/assets/js/17.6ade2139.js"><link rel="prefetch" href="/assets/js/18.f3523bb9.js"><link rel="prefetch" href="/assets/js/19.0cd9be83.js"><link rel="prefetch" href="/assets/js/20.74e5d0bb.js"><link rel="prefetch" href="/assets/js/21.057bc373.js"><link rel="prefetch" href="/assets/js/23.45611473.js"><link rel="prefetch" href="/assets/js/24.2c5aaad4.js"><link rel="prefetch" href="/assets/js/25.53994f14.js"><link rel="prefetch" href="/assets/js/26.4b88dd5e.js"><link rel="prefetch" href="/assets/js/27.33da5e65.js"><link rel="prefetch" href="/assets/js/28.e1bc1897.js"><link rel="prefetch" href="/assets/js/29.41a44f48.js"><link rel="prefetch" href="/assets/js/30.b52a01e3.js"><link rel="prefetch" href="/assets/js/31.32e50696.js"><link rel="prefetch" href="/assets/js/32.9870be67.js"><link rel="prefetch" href="/assets/js/33.6be9bedc.js"><link rel="prefetch" href="/assets/js/34.95333d7a.js"><link rel="prefetch" href="/assets/js/35.b90c291b.js"><link rel="prefetch" href="/assets/js/36.853d11aa.js"><link rel="prefetch" href="/assets/js/37.fe79cc5b.js"><link rel="prefetch" href="/assets/js/38.aef7ef02.js"><link rel="prefetch" href="/assets/js/39.dca7aa67.js"><link rel="prefetch" href="/assets/js/4.37520176.js"><link rel="prefetch" href="/assets/js/40.d659d938.js"><link rel="prefetch" href="/assets/js/41.83aeacc5.js"><link rel="prefetch" href="/assets/js/42.610c5aca.js"><link rel="prefetch" href="/assets/js/43.e9222b3a.js"><link rel="prefetch" href="/assets/js/44.9858f816.js"><link rel="prefetch" href="/assets/js/45.b0f0f5f2.js"><link rel="prefetch" href="/assets/js/46.492b33ea.js"><link rel="prefetch" href="/assets/js/47.07c3328b.js"><link rel="prefetch" href="/assets/js/48.b2d7476f.js"><link rel="prefetch" href="/assets/js/49.9fd583ed.js"><link rel="prefetch" href="/assets/js/5.b259d54e.js"><link rel="prefetch" href="/assets/js/50.9e6ef79d.js"><link rel="prefetch" href="/assets/js/51.8c3776f7.js"><link rel="prefetch" href="/assets/js/52.92a4b980.js"><link rel="prefetch" href="/assets/js/53.3e72d3bc.js"><link rel="prefetch" href="/assets/js/54.e1e107ff.js"><link rel="prefetch" href="/assets/js/55.418768d6.js"><link rel="prefetch" href="/assets/js/56.95ca3ac0.js"><link rel="prefetch" href="/assets/js/57.ea7fb933.js"><link rel="prefetch" href="/assets/js/58.40c5610c.js"><link rel="prefetch" href="/assets/js/59.5af9d54f.js"><link rel="prefetch" href="/assets/js/6.70c0bce3.js"><link rel="prefetch" href="/assets/js/60.0c66c22f.js"><link rel="prefetch" href="/assets/js/61.05b88817.js"><link rel="prefetch" href="/assets/js/62.483e5481.js"><link rel="prefetch" href="/assets/js/63.6ab28e82.js"><link rel="prefetch" href="/assets/js/8.6beb7cbb.js"><link rel="prefetch" href="/assets/js/9.5015eb07.js"><link rel="prefetch" href="/assets/js/vuejs-paginate.92df942c.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e0c1612b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="dark:bg-gray-1000 bg-white dark:text-sepia text-gray-900" data-v-335698aa><header class="border-b-4 dark:border-green-700 border-primary" data-v-335698aa><div class="container mx-auto flex h-20 px-6 items-center"><a href="/" class="dark:text-green-700 text-primary text-3xl router-link-active">
+            Learn With Daniel
+        </a></div></header> <div class="container mx-auto px-6 md:px-16 py-8 max-w-screen-md" data-v-335698aa><div class="py-8 md:py-16" data-v-335698aa><div data-v-335698aa><span class="dark:bg-gray-800 bg-gray-100 px-3 py-1 mx-1 rounded-full uppercase text-xs font-medium dark:text-green-700 tracking-wider" data-v-335698aa>
+                    PHP
+                </span><span class="dark:bg-gray-800 bg-gray-100 px-3 py-1 mx-1 rounded-full uppercase text-xs font-medium dark:text-green-700 tracking-wider" data-v-335698aa>
+                    Tools
+                </span><span class="dark:bg-gray-800 bg-gray-100 px-3 py-1 mx-1 rounded-full uppercase text-xs font-medium dark:text-green-700 tracking-wider" data-v-335698aa>
+                    VSCode
+                </span><span class="dark:bg-gray-800 bg-gray-100 px-3 py-1 mx-1 rounded-full uppercase text-xs font-medium dark:text-green-700 tracking-wider" data-v-335698aa>
+                    Debug
+                </span></div> <h1 class="dark:text-green-500 text-4xl md:text-6xl py-6" data-v-335698aa>PHP Debugger on VSCode</h1> <p class="author text-sm" data-v-335698aa>
+                by <span class="text-base font-bold" data-v-335698aa>Daniel Loureiro</span>
+                on <time class="mr-3" data-v-335698aa>Dec 28, 2020</time> <span class="reading-time text-xs uppercase py-4 block md:inline-block md:py-9" data-v-335698aa><vp-icon size="1.5em" name="clock-best" class="inline-block" data-v-335698aa></vp-icon>
+                    2 min read
+                </span></p></div> <div class="post-wrap text-xl leading-10 pb-8" data-v-335698aa><div class="content__default" data-v-335698aa><p>This tutorial shows how to debug PHP on VSCode Editor.
+</p> <h2 id="_1-install-xdebug"><a href="#_1-install-xdebug" class="header-anchor">#</a> 1. Install xdebug</h2> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> php-xdebug
+</code></pre></div><h2 id="_2-check-installation"><a href="#_2-check-installation" class="header-anchor">#</a> 2. Check installation</h2> <p>Create a temporary file to display your <code>phpinfo</code> information:</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token builtin class-name">cd</span>
+<span class="token builtin class-name">echo</span> <span class="token string">&quot;&lt;?php phpinfo();&quot;</span> <span class="token operator">&gt;</span> phpinfo.php
+php -S localhost:3000
+    PHP <span class="token number">7.3</span>.6-1+ubuntu19.04.1+deb.sury.org+1 Development Server started at Wed Jun  <span class="token number">5</span> <span class="token number">17</span>:20:29 <span class="token number">2019</span>
+    Listening on http://localhost:3000
+    Document root is /home/daniel
+    Press Ctrl-C to quit.
+</code></pre></div><p>Now, <strong>(1)</strong> open the page, <strong>(2)</strong> search for xdebug, and <strong>(3)</strong> get the <code>xdebug.ini</code> path:
+<img src="/assets/img/xdebug-1024x700.9697a25c.png#wide" alt="PHPInfo on browser"></p> <p>Down on the same page, check if the module is enabled:
+<img src="/assets/img/xdebug2-1024x320.6b269652.png#wide" alt="xdebug details on phpinfo page"></p> <p>Now you can remove the <code>phpinfo.php</code> file (optional):</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token builtin class-name">cd</span>
+<span class="token function">rm</span> phpinfo.php
+</code></pre></div><h2 id="_3-add-these-lines-to-xdebug-ini"><a href="#_3-add-these-lines-to-xdebug-ini" class="header-anchor">#</a> 3. Add these lines to <code>xdebug.ini</code></h2> <div class="language-ini extra-class"><pre class="language-ini"><code><span class="token comment"># /etc/php/7.3/cli/conf.d/20-xdebug.ini</span>
+
+<span class="token comment"># xdebug v2.x</span>
+<span class="token constant">xdebug.remote_enable</span><span class="token attr-value"><span class="token punctuation">=</span>1</span>
+<span class="token constant">xdebug.remote_host</span><span class="token attr-value"><span class="token punctuation">=</span>127.0.0.1</span>
+<span class="token constant">xdebug.remote_connect_back</span><span class="token attr-value"><span class="token punctuation">=</span>1    # Not safe for production servers</span>
+<span class="token constant">xdebug.remote_port</span><span class="token attr-value"><span class="token punctuation">=</span>9000</span>
+<span class="token constant">xdebug.remote_handler</span><span class="token attr-value"><span class="token punctuation">=</span>dbgp</span>
+<span class="token constant">xdebug.remote_mode</span><span class="token attr-value"><span class="token punctuation">=</span>req</span>
+<span class="token constant">xdebug.remote_autostart</span><span class="token attr-value"><span class="token punctuation">=</span>true</span>
+
+<span class="token comment"># xdebug v3.x</span>
+<span class="token constant">xdebug.log_level</span><span class="token attr-value"><span class="token punctuation">=</span>0</span>
+<span class="token constant">xdebug.mode</span><span class="token attr-value"><span class="token punctuation">=</span>debug</span>
+<span class="token constant">xdebug.start_with_request</span><span class="token attr-value"><span class="token punctuation">=</span>yes # try &quot;trigger&quot; if not working</span>
+<span class="token constant">xdebug.client_port</span><span class="token attr-value"><span class="token punctuation">=</span>9000</span>
+</code></pre></div><h2 id="_4-install-php-debug-plugin-on-vscode"><a href="#_4-install-php-debug-plugin-on-vscode" class="header-anchor">#</a> 4. Install <code>PHP Debug</code> plugin on VSCode</h2> <p>On VSCode,
+(1) Click on <code>Extensions</code> tab (<code>Ctrl+Shift+X</code>); and
+(2) Install package <code>PHP Debug</code> by <em>Felix Becker</em>:</p> <p><img src="/assets/img/xdebug-vscode.1b18fef6.png" alt="PHP Debug package"></p> <h2 id="_5-re-start-vscode-editor"><a href="#_5-re-start-vscode-editor" class="header-anchor">#</a> 5. Re-start VSCode editor</h2> <h2 id="_6-debugging"><a href="#_6-debugging" class="header-anchor">#</a> 6. Debugging</h2> <h3 id="_1-click-on-run-tab-ctrl-shift-d"><a href="#_1-click-on-run-tab-ctrl-shift-d" class="header-anchor">#</a> 1. Click on <code>Run</code> tab (<code>Ctrl+Shift+D</code>)</h3> <p><img src="/assets/img/xdebug-vscode-launch-1.747eca51.png" alt="The &quot;Run&quot; tab"></p> <h3 id="_2-click-on-create-a-launch-json-file"><a href="#_2-click-on-create-a-launch-json-file" class="header-anchor">#</a> 2. Click on <code>create a launch.json file</code></h3> <p><img src="/assets/img/xdebug-vscode-launch-2.a1d7ec26.png" alt="The &quot;create launch.json&quot; link"></p> <h3 id="_3-click-on-php"><a href="#_3-click-on-php" class="header-anchor">#</a> 3. Click on <code>PHP</code></h3> <p><img src="/assets/img/vscode-xdebug-php.ac48fa9c.png" alt="Selecting PHP"></p> <p>You can close the <code>launch.json</code> file:
+<img src="/assets/img/vscode-debug-file.e7ca0bd4.png" alt=" file"></p> <h3 id="_4-click-on-the-play-icon"><a href="#_4-click-on-the-play-icon" class="header-anchor">#</a> 4. Click on the Play icon</h3> <p><img src="/assets/img/start-debugging-1.eb1b2907.png" alt="Play"></p> <p>The debugger tools will appear:
+<img src="/assets/img/start-debugging-2.5f0cbf6d.png" alt="Debugger tools"></p> <h3 id="_5-set-breakpoints-click-on-the-ruler"><a href="#_5-set-breakpoints-click-on-the-ruler" class="header-anchor">#</a> 5. Set breakpoints (click on the ruler)</h3> <p><img src="/assets/img/breakpoint.c3c11b7a.png" alt="A breakpoint"></p> <div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>Unselect <code>Everything</code> for performance and for your sanity.</p> <p><img src="/assets/img/breakpoint-everything.5bee21f3.png" alt="A breakpoint"></p></div></div></div> <hr class="my-12" data-v-335698aa> <div data-v-335698aa><h2 class="text-xl md:text-3xl pb-10 text-center" data-v-335698aa>Comments</h2> <!----></div></div> <footer class="py-4 bg-gray-800" data-v-335698aa><p class="text-center text-gray-600 text-xs">Copyright 2022 - Daniel Loureiro</p></footer></div><div class="global-ui"><!----><!----><!----></div></div>
+    <script src="/assets/js/app.5632ea00.js" defer></script><script src="/assets/js/3.9e1cc85f.js" defer></script><script src="/assets/js/7.8d26dacd.js" defer></script><script src="/assets/js/22.2ffb8c95.js" defer></script>
+  </body>
+</html>

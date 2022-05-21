@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Rails and AngularJS: Authentication with Devise | Learn with Daniel - A learner diary</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/favicon-128.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="description" content="A learner diary">
+    
+    <link rel="preload" href="/assets/css/0.styles.e0c1612b.css" as="style"><link rel="preload" href="/assets/js/app.5632ea00.js" as="script"><link rel="preload" href="/assets/js/3.9e1cc85f.js" as="script"><link rel="preload" href="/assets/js/46.492b33ea.js" as="script"><link rel="preload" href="/assets/js/22.2ffb8c95.js" as="script"><link rel="prefetch" href="/assets/js/10.ab7cb67b.js"><link rel="prefetch" href="/assets/js/11.5242956c.js"><link rel="prefetch" href="/assets/js/12.59c1b827.js"><link rel="prefetch" href="/assets/js/13.eb4c0cc0.js"><link rel="prefetch" href="/assets/js/14.cd6385da.js"><link rel="prefetch" href="/assets/js/15.f6ed5cf0.js"><link rel="prefetch" href="/assets/js/16.60e48bf7.js"><link rel="prefetch" href="/assets/js/17.6ade2139.js"><link rel="prefetch" href="/assets/js/18.f3523bb9.js"><link rel="prefetch" href="/assets/js/19.0cd9be83.js"><link rel="prefetch" href="/assets/js/20.74e5d0bb.js"><link rel="prefetch" href="/assets/js/21.057bc373.js"><link rel="prefetch" href="/assets/js/23.45611473.js"><link rel="prefetch" href="/assets/js/24.2c5aaad4.js"><link rel="prefetch" href="/assets/js/25.53994f14.js"><link rel="prefetch" href="/assets/js/26.4b88dd5e.js"><link rel="prefetch" href="/assets/js/27.33da5e65.js"><link rel="prefetch" href="/assets/js/28.e1bc1897.js"><link rel="prefetch" href="/assets/js/29.41a44f48.js"><link rel="prefetch" href="/assets/js/30.b52a01e3.js"><link rel="prefetch" href="/assets/js/31.32e50696.js"><link rel="prefetch" href="/assets/js/32.9870be67.js"><link rel="prefetch" href="/assets/js/33.6be9bedc.js"><link rel="prefetch" href="/assets/js/34.95333d7a.js"><link rel="prefetch" href="/assets/js/35.b90c291b.js"><link rel="prefetch" href="/assets/js/36.853d11aa.js"><link rel="prefetch" href="/assets/js/37.fe79cc5b.js"><link rel="prefetch" href="/assets/js/38.aef7ef02.js"><link rel="prefetch" href="/assets/js/39.dca7aa67.js"><link rel="prefetch" href="/assets/js/4.37520176.js"><link rel="prefetch" href="/assets/js/40.d659d938.js"><link rel="prefetch" href="/assets/js/41.83aeacc5.js"><link rel="prefetch" href="/assets/js/42.610c5aca.js"><link rel="prefetch" href="/assets/js/43.e9222b3a.js"><link rel="prefetch" href="/assets/js/44.9858f816.js"><link rel="prefetch" href="/assets/js/45.b0f0f5f2.js"><link rel="prefetch" href="/assets/js/47.07c3328b.js"><link rel="prefetch" href="/assets/js/48.b2d7476f.js"><link rel="prefetch" href="/assets/js/49.9fd583ed.js"><link rel="prefetch" href="/assets/js/5.b259d54e.js"><link rel="prefetch" href="/assets/js/50.9e6ef79d.js"><link rel="prefetch" href="/assets/js/51.8c3776f7.js"><link rel="prefetch" href="/assets/js/52.92a4b980.js"><link rel="prefetch" href="/assets/js/53.3e72d3bc.js"><link rel="prefetch" href="/assets/js/54.e1e107ff.js"><link rel="prefetch" href="/assets/js/55.418768d6.js"><link rel="prefetch" href="/assets/js/56.95ca3ac0.js"><link rel="prefetch" href="/assets/js/57.ea7fb933.js"><link rel="prefetch" href="/assets/js/58.40c5610c.js"><link rel="prefetch" href="/assets/js/59.5af9d54f.js"><link rel="prefetch" href="/assets/js/6.70c0bce3.js"><link rel="prefetch" href="/assets/js/60.0c66c22f.js"><link rel="prefetch" href="/assets/js/61.05b88817.js"><link rel="prefetch" href="/assets/js/62.483e5481.js"><link rel="prefetch" href="/assets/js/63.6ab28e82.js"><link rel="prefetch" href="/assets/js/7.8d26dacd.js"><link rel="prefetch" href="/assets/js/8.6beb7cbb.js"><link rel="prefetch" href="/assets/js/9.5015eb07.js"><link rel="prefetch" href="/assets/js/vuejs-paginate.92df942c.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e0c1612b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="dark:bg-gray-1000 bg-white dark:text-sepia text-gray-900" data-v-335698aa><header class="border-b-4 dark:border-green-700 border-primary" data-v-335698aa><div class="container mx-auto flex h-20 px-6 items-center"><a href="/" class="dark:text-green-700 text-primary text-3xl router-link-active">
+            Learn With Daniel
+        </a></div></header> <div class="container mx-auto px-6 md:px-16 py-8 max-w-screen-md" data-v-335698aa><div class="py-8 md:py-16" data-v-335698aa><div data-v-335698aa><span class="dark:bg-gray-800 bg-gray-100 px-3 py-1 mx-1 rounded-full uppercase text-xs font-medium dark:text-green-700 tracking-wider" data-v-335698aa>
+                    Rails
+                </span><span class="dark:bg-gray-800 bg-gray-100 px-3 py-1 mx-1 rounded-full uppercase text-xs font-medium dark:text-green-700 tracking-wider" data-v-335698aa>
+                    Ruby
+                </span><span class="dark:bg-gray-800 bg-gray-100 px-3 py-1 mx-1 rounded-full uppercase text-xs font-medium dark:text-green-700 tracking-wider" data-v-335698aa>
+                    AngularJS
+                </span><span class="dark:bg-gray-800 bg-gray-100 px-3 py-1 mx-1 rounded-full uppercase text-xs font-medium dark:text-green-700 tracking-wider" data-v-335698aa>
+                    JS
+                </span><span class="dark:bg-gray-800 bg-gray-100 px-3 py-1 mx-1 rounded-full uppercase text-xs font-medium dark:text-green-700 tracking-wider" data-v-335698aa>
+                    Gem
+                </span></div> <h1 class="dark:text-green-500 text-4xl md:text-6xl py-6" data-v-335698aa>Rails and AngularJS: Authentication with Devise</h1> <p class="author text-sm" data-v-335698aa>
+                by <span class="text-base font-bold" data-v-335698aa>Daniel Loureiro</span>
+                on <time class="mr-3" data-v-335698aa>Oct 11, 2015</time> <span class="reading-time text-xs uppercase py-4 block md:inline-block md:py-9" data-v-335698aa><vp-icon size="1.5em" name="clock-best" class="inline-block" data-v-335698aa></vp-icon>
+                    4 min read
+                </span></p></div> <div class="post-wrap text-xl leading-10 pb-8" data-v-335698aa><div class="content__default" data-v-335698aa><p>Let's see how to use Devise authentication on AngularJS.
+</p> <h2 id="before-starting"><a href="#before-starting" class="header-anchor">#</a> Before starting</h2> <p>I assume you have an AngularJS application running on a domain (<code>https://myfabulousapp.com</code>) and the Rails API running on another domain (<code>https://api.myfabulousapp.com</code>).</p> <p>Let's create a simple project &quot;test&quot; from the scratch, with this structure:</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token builtin class-name">test</span>
+  +--- api <span class="token punctuation">(</span>Rails, running on localhost:3000<span class="token punctuation">)</span>
+  +--- app <span class="token punctuation">(</span>AngularJS, running on localhost:3001<span class="token punctuation">)</span>
+        +--- index.html
+        +--- app.js
+        +--- bower_components/
+        +--- views
+               +--- home.html
+</code></pre></div><p>First, we create the project root folder, <code>test</code>:</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># create aplication folder</span>
+<span class="token function">mkdir</span> <span class="token builtin class-name">test</span>
+<span class="token builtin class-name">cd</span> <span class="token builtin class-name">test</span>
+</code></pre></div><p>Now, we create the Rails app with Devise on <code>test/api</code>:</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># create backend (api, Rails)</span>
+rails new api --api
+<span class="token builtin class-name">cd</span> api
+
+<span class="token comment"># install Devise</span>
+gem <span class="token string">'devise'</span> <span class="token operator">&gt;&gt;</span> Gemfile
+bundle <span class="token function">install</span>
+rails generate devise:install
+rails generate devise user
+rake db:migrate
+
+<span class="token comment"># start backend server</span>
+rails s
+</code></pre></div><p>Open another terminal window:</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># create frontend folder (app, Angular)</span>
+<span class="token builtin class-name">cd</span> <span class="token builtin class-name">test</span>
+<span class="token function">mkdir</span> app
+<span class="token builtin class-name">cd</span> app
+
+<span class="token comment"># install Angular and the router library</span>
+bower <span class="token function">install</span> angular --save
+bower <span class="token function">install</span> angular-ui-router --save
+
+<span class="token comment"># install a minimalist html webserver</span>
+<span class="token comment"># gem install adsf</span>
+
+<span class="token comment"># start frontend server</span>
+adsf -p <span class="token number">3001</span>
+</code></pre></div><p>Our <code>app/index.html</code>:</p> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">ng-app</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>myApp<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>header</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>/bower_components/angular/angular.js<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>/bower_components/ui-router/release/angular-ui-router.js<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>/app.js<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>header</span><span class="token punctuation">&gt;</span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>/<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Home<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ui-view</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ui-view</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>Our very basic <code>app/app.js</code>:</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">var</span> app <span class="token operator">=</span> angular<span class="token punctuation">.</span><span class="token function">module</span><span class="token punctuation">(</span><span class="token string">'myApp'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+  <span class="token string">'ui.router'</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">config</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+  <span class="token string">'$stateProvider'</span><span class="token punctuation">,</span>
+  <span class="token string">'$urlRouterProvider'</span><span class="token punctuation">,</span>
+  <span class="token string">'$locationProvider'</span><span class="token punctuation">,</span>
+
+  <span class="token keyword">function</span> <span class="token punctuation">(</span>
+    <span class="token parameter">$stateProvider<span class="token punctuation">,</span>
+    $urlRouterProvider<span class="token punctuation">,</span>
+    $locationProvider</span>
+  <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">/** Uses &quot;/my-url&quot; instead of &quot;/!#my-url&quot;. */</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>history <span class="token operator">&amp;&amp;</span> window<span class="token punctuation">.</span>history<span class="token punctuation">.</span>pushState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      $locationProvider<span class="token punctuation">.</span><span class="token function">html5Mode</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/** Router. */</span>
+    $stateProvider
+      <span class="token punctuation">.</span><span class="token function">state</span><span class="token punctuation">(</span><span class="token string">'home'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+        url<span class="token operator">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span>
+        templateUrl<span class="token operator">:</span> <span class="token string">'/views/home.html'</span><span class="token punctuation">,</span>
+
+      <span class="token punctuation">.</span><span class="token function">otherwise</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        redirectTo<span class="token operator">:</span> <span class="token string">'/'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>The main page on the browser (open <code>http://localhost:3001</code>):</p> <div class="language-html extra-class"><pre class="language-html"><code>Our Awesome Home Page
+</code></pre></div><hr> <h2 id="_1-install-rack-cors-gem"><a href="#_1-install-rack-cors-gem" class="header-anchor">#</a> 1. Install <a href="https://github.com/cyu/rack-cors" target="_blank" rel="noopener noreferrer">rack-cors<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> gem</h2> <p>Add to <code>api/Gemfile</code>:</p> <div class="language-ruby extra-class"><pre class="language-ruby"><code>gem <span class="token string">'rack-cors'</span><span class="token punctuation">,</span> <span class="token symbol">:require</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">'rack/cors'</span>
+</code></pre></div><p>Install it:</p> <div class="language-bash extra-class"><pre class="language-bash"><code>bundle <span class="token function">install</span>
+</code></pre></div><h2 id="_2-allow-angularjs-to-access-rails"><a href="#_2-allow-angularjs-to-access-rails" class="header-anchor">#</a> 2. Allow AngularJS to access Rails</h2> <p>On <code>api/application.rb</code>:</p> <div class="language-ruby extra-class"><pre class="language-ruby"><code><span class="token comment"># CORS</span>
+config<span class="token punctuation">.</span>middleware<span class="token punctuation">.</span>insert_before <span class="token number">0</span><span class="token punctuation">,</span> <span class="token constant">Rack</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">Cors</span> <span class="token keyword">do</span>
+  allow <span class="token keyword">do</span>
+    origins <span class="token string">'*'</span> <span class="token comment"># on production, use the line below instead</span>
+<span class="token comment">#   origins 'localhost:3001', 'myfabulousapp.com'</span>
+    resource <span class="token string">'*'</span><span class="token punctuation">,</span> <span class="token symbol">:headers</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token symbol">:any</span><span class="token punctuation">,</span> <span class="token symbol">:methods</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span><span class="token symbol">:get</span><span class="token punctuation">,</span> <span class="token symbol">:post</span><span class="token punctuation">,</span> <span class="token symbol">:delete</span><span class="token punctuation">,</span> <span class="token symbol">:put</span><span class="token punctuation">,</span> <span class="token symbol">:head</span><span class="token punctuation">]</span>
+  <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+</code></pre></div><div class="custom-block danger"><p class="custom-block-title">WARNING</p> <p><strong>DO NOT add &quot;:options&quot;.</strong></p> <p>If you do that, you won't be able to destroy sessions, because AngularJS replaces &quot;delete&quot; with &quot;options&quot; when communicating with another domain (and Devise doesn't recognize the &quot;option&quot; verb as a &quot;delete&quot;)</p></div> <p>Then, <strong>restart the server</strong>.</p> <h3 id="_2-1-if-rails-api-enable-sessions"><a href="#_2-1-if-rails-api-enable-sessions" class="header-anchor">#</a> 2.1. If Rails --api, enable Sessions</h3> <p>On <code>api/application.rb</code>:</p> <div class="language-ruby extra-class"><pre class="language-ruby"><code><span class="token comment"># Session</span>
+config<span class="token punctuation">.</span>middleware<span class="token punctuation">.</span>use <span class="token constant">ActionDispatch</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">Cookies</span>
+config<span class="token punctuation">.</span>middleware<span class="token punctuation">.</span>use <span class="token constant">ActionDispatch</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">Session</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">CookieStore</span>
+config<span class="token punctuation">.</span>session_store <span class="token symbol">:cookie_store</span><span class="token punctuation">,</span> <span class="token symbol">:key</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token string">'_namespace_key'</span>
+config<span class="token punctuation">.</span>action_dispatch<span class="token punctuation">.</span>cookies_serializer <span class="token operator">=</span> <span class="token symbol">:json</span>
+</code></pre></div><h2 id="_3-install-angular-devise-on-the-angularjs"><a href="#_3-install-angular-devise-on-the-angularjs" class="header-anchor">#</a> 3. Install <a href="https://github.com/cloudspace/angular_devise" target="_blank" rel="noopener noreferrer">angular_devise<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> on the AngularJS</h2> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token builtin class-name">cd</span> test/app
+bower <span class="token function">install</span> --save angular-devise
+</code></pre></div><div class="language-html extra-class"><pre class="language-html"><code><span class="token comment">&lt;!-- app/views/home.html --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">ng-app</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>myApp<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>header</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>/bower_components/angular/angular.js<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>/bower_components/ui-router/release/angular-ui-router.js<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>/bower_components/angular-devise/lib/devise.js<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>/app.js<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>header</span><span class="token punctuation">&gt;</span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>/<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Home<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ui-view</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ui-view</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><h2 id="_4-configure-angularjs"><a href="#_4-configure-angularjs" class="header-anchor">#</a> 4. Configure AngularJS</h2> <h3 id="add-devise-module-to-the-app"><a href="#add-devise-module-to-the-app" class="header-anchor">#</a> Add Devise module to the app</h3> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// app/app.js</span>
+angular<span class="token punctuation">.</span><span class="token function">module</span><span class="token punctuation">(</span><span class="token string">'myApp'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'Devise'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre></div><h3 id="set-http-to-always-provide-credentials"><a href="#set-http-to-always-provide-credentials" class="header-anchor">#</a> Set <code>$http</code> to always provide credentials</h3> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// app/app.js</span>
+$httpProvider<span class="token punctuation">.</span>defaults<span class="token punctuation">.</span>withCredentials <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="set-rails-api-urls-change-api-url-to-your-actual-api-location"><a href="#set-rails-api-urls-change-api-url-to-your-actual-api-location" class="header-anchor">#</a> Set Rails API URLs (change <code>api_url</code> to your actual API location)</h3> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// app/app.js</span>
+<span class="token comment">/** The API base URL. */</span>
+<span class="token keyword">var</span> api_url <span class="token operator">=</span> <span class="token string">'http://localhost:3000/'</span><span class="token punctuation">;</span>
+
+<span class="token comment">/** Sign in. */</span>
+AuthProvider<span class="token punctuation">.</span><span class="token function">loginPath</span><span class="token punctuation">(</span>api_url <span class="token operator">+</span> <span class="token string">'users/sign_in.json'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+AuthProvider<span class="token punctuation">.</span><span class="token function">loginMethod</span><span class="token punctuation">(</span><span class="token string">'POST'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+AuthProvider<span class="token punctuation">.</span><span class="token function">resourceName</span><span class="token punctuation">(</span><span class="token string">'user'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">/** Sign up. */</span>
+AuthProvider<span class="token punctuation">.</span><span class="token function">registerPath</span><span class="token punctuation">(</span>api_url <span class="token operator">+</span> <span class="token string">'users.json'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+AuthProvider<span class="token punctuation">.</span><span class="token function">registerMethod</span><span class="token punctuation">(</span><span class="token string">'POST'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+AuthProvider<span class="token punctuation">.</span><span class="token function">resourceName</span><span class="token punctuation">(</span><span class="token string">'user'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">/** Sign out. */</span>
+AuthProvider<span class="token punctuation">.</span><span class="token function">logoutPath</span><span class="token punctuation">(</span>api_url <span class="token operator">+</span> <span class="token string">'users/sign_out.json'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+AuthProvider<span class="token punctuation">.</span><span class="token function">logoutMethod</span><span class="token punctuation">(</span><span class="token string">'DELETE'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>Or a more extensive example:</p> <div class="language-js extra-class"><div class="highlight-lines"><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br><div class="highlighted"> </div><br><br><br><div class="highlighted"> </div><br><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div><pre class="language-js"><code><span class="token comment">// app/app.js</span>
+<span class="token keyword">var</span> app <span class="token operator">=</span> angular<span class="token punctuation">.</span><span class="token function">module</span><span class="token punctuation">(</span><span class="token string">'myApp'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+  <span class="token string">'ui.router'</span><span class="token punctuation">,</span>
+  <span class="token string">'Devise'</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">config</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+  <span class="token string">'$stateProvider'</span><span class="token punctuation">,</span>
+  <span class="token string">'$urlRouterProvider'</span><span class="token punctuation">,</span>
+  <span class="token string">'$locationProvider'</span><span class="token punctuation">,</span>
+  <span class="token string">'$httpProvider'</span><span class="token punctuation">,</span>
+  <span class="token string">'AuthProvider'</span><span class="token punctuation">,</span>
+
+  <span class="token keyword">function</span> <span class="token punctuation">(</span>
+    <span class="token parameter">$stateProvider<span class="token punctuation">,</span>
+    $urlRouterProvider<span class="token punctuation">,</span>
+    $locationProvider<span class="token punctuation">,</span>
+    $httpProvider<span class="token punctuation">,</span>
+    AuthProvider</span>
+  <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">/** Always provide credentials. */</span>
+    $httpProvider<span class="token punctuation">.</span>defaults<span class="token punctuation">.</span>withCredentials <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/** The API base URL. */</span>
+    <span class="token keyword">var</span> api_url <span class="token operator">=</span> <span class="token string">'http://localhost:3000/'</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/** Sign in. */</span>
+    AuthProvider<span class="token punctuation">.</span><span class="token function">loginPath</span><span class="token punctuation">(</span>api_url <span class="token operator">+</span> <span class="token string">'users/sign_in.json'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    AuthProvider<span class="token punctuation">.</span><span class="token function">loginMethod</span><span class="token punctuation">(</span><span class="token string">'POST'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    AuthProvider<span class="token punctuation">.</span><span class="token function">resourceName</span><span class="token punctuation">(</span><span class="token string">'user'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/** Sign up. */</span>
+    AuthProvider<span class="token punctuation">.</span><span class="token function">registerPath</span><span class="token punctuation">(</span>api_url <span class="token operator">+</span> <span class="token string">'users.json'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    AuthProvider<span class="token punctuation">.</span><span class="token function">registerMethod</span><span class="token punctuation">(</span><span class="token string">'POST'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    AuthProvider<span class="token punctuation">.</span><span class="token function">resourceName</span><span class="token punctuation">(</span><span class="token string">'user'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/** Sign out. */</span>
+    AuthProvider<span class="token punctuation">.</span><span class="token function">logoutPath</span><span class="token punctuation">(</span>api_url <span class="token operator">+</span> <span class="token string">'users/sign_out.json'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    AuthProvider<span class="token punctuation">.</span><span class="token function">logoutMethod</span><span class="token punctuation">(</span><span class="token string">'DELETE'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/** Uses &quot;/my-url&quot; instead of &quot;/!#my-url&quot;. */</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>history <span class="token operator">&amp;&amp;</span> window<span class="token punctuation">.</span>history<span class="token punctuation">.</span>pushState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      $locationProvider<span class="token punctuation">.</span><span class="token function">html5Mode</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/** Router. */</span>
+    $stateProvider
+      <span class="token punctuation">.</span><span class="token function">state</span><span class="token punctuation">(</span><span class="token string">'home'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+        url<span class="token operator">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span>
+        templateUrl<span class="token operator">:</span> <span class="token string">'/views/home.html'</span><span class="token punctuation">,</span>
+
+      <span class="token punctuation">.</span><span class="token function">otherwise</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        redirectTo<span class="token operator">:</span> <span class="token string">'/'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="_5-remove-the-csrf-protection-from-rails-i-know-i-know"><a href="#_5-remove-the-csrf-protection-from-rails-i-know-i-know" class="header-anchor">#</a> 5. Remove the CSRF protection from Rails (I know, I know...)</h2> <p>Comment (or delete) the <code>protect_from_forgery</code> line. Also, add a <code>:json</code> to the <code>respond_to</code>, so it will respond to JSON calls.</p> <div class="language-ruby extra-class"><pre class="language-ruby"><code><span class="token comment"># api/application_controller.rb</span>
+respond_to <span class="token symbol">:html</span><span class="token punctuation">,</span> <span class="token symbol">:json</span>
+<span class="token comment"># protect_from_forgery</span>
+</code></pre></div><div class="custom-block warning"><p class="custom-block-title">WARNING</p> <p>After testing your app and know it is working, you can look for a better solution to deal with CSRF, like use this <a href="https://github.com/jsanders/angular_rails_csrf" target="_blank" rel="noopener noreferrer">angular_rails_csrf<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> gem (which hasn't worked for me, but you may have more luck - <a href="https://github.com/jsanders/angular_rails_csrf/issues/5#issuecomment-98427917" target="_blank" rel="noopener noreferrer">see my tries here<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>).</p></div> <h2 id="_6-after-a-refresh-get-the-session-back"><a href="#_6-after-a-refresh-get-the-session-back" class="header-anchor">#</a> 6. After a refresh, get the session back</h2> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// app/app.js</span>
+angular<span class="token punctuation">.</span><span class="token function">module</span><span class="token punctuation">(</span><span class="token string">'myModule'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'Devise'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'Auth'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">Auth</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Auth<span class="token punctuation">.</span><span class="token function">currentUser</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">user</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Auth<span class="token punctuation">.</span>_currentUser<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="_7-that-s-all"><a href="#_7-that-s-all" class="header-anchor">#</a> 7. That's all! 😃</h2></div></div> <hr class="my-12" data-v-335698aa> <div data-v-335698aa><h2 class="text-xl md:text-3xl pb-10 text-center" data-v-335698aa>Comments</h2> <!----></div></div> <footer class="py-4 bg-gray-800" data-v-335698aa><p class="text-center text-gray-600 text-xs">Copyright 2022 - Daniel Loureiro</p></footer></div><div class="global-ui"><!----><!----><!----></div></div>
+    <script src="/assets/js/app.5632ea00.js" defer></script><script src="/assets/js/3.9e1cc85f.js" defer></script><script src="/assets/js/46.492b33ea.js" defer></script><script src="/assets/js/22.2ffb8c95.js" defer></script>
+  </body>
+</html>

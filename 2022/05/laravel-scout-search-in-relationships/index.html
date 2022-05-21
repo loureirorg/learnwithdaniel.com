@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Laravel Scout - Searching in relationships | Learn with Daniel - A learner diary</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/favicon-128.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="description" content="A learner diary">
+    
+    <link rel="preload" href="/assets/css/0.styles.e0c1612b.css" as="style"><link rel="preload" href="/assets/js/app.5632ea00.js" as="script"><link rel="preload" href="/assets/js/3.9e1cc85f.js" as="script"><link rel="preload" href="/assets/js/62.483e5481.js" as="script"><link rel="preload" href="/assets/js/22.2ffb8c95.js" as="script"><link rel="prefetch" href="/assets/js/10.ab7cb67b.js"><link rel="prefetch" href="/assets/js/11.5242956c.js"><link rel="prefetch" href="/assets/js/12.59c1b827.js"><link rel="prefetch" href="/assets/js/13.eb4c0cc0.js"><link rel="prefetch" href="/assets/js/14.cd6385da.js"><link rel="prefetch" href="/assets/js/15.f6ed5cf0.js"><link rel="prefetch" href="/assets/js/16.60e48bf7.js"><link rel="prefetch" href="/assets/js/17.6ade2139.js"><link rel="prefetch" href="/assets/js/18.f3523bb9.js"><link rel="prefetch" href="/assets/js/19.0cd9be83.js"><link rel="prefetch" href="/assets/js/20.74e5d0bb.js"><link rel="prefetch" href="/assets/js/21.057bc373.js"><link rel="prefetch" href="/assets/js/23.45611473.js"><link rel="prefetch" href="/assets/js/24.2c5aaad4.js"><link rel="prefetch" href="/assets/js/25.53994f14.js"><link rel="prefetch" href="/assets/js/26.4b88dd5e.js"><link rel="prefetch" href="/assets/js/27.33da5e65.js"><link rel="prefetch" href="/assets/js/28.e1bc1897.js"><link rel="prefetch" href="/assets/js/29.41a44f48.js"><link rel="prefetch" href="/assets/js/30.b52a01e3.js"><link rel="prefetch" href="/assets/js/31.32e50696.js"><link rel="prefetch" href="/assets/js/32.9870be67.js"><link rel="prefetch" href="/assets/js/33.6be9bedc.js"><link rel="prefetch" href="/assets/js/34.95333d7a.js"><link rel="prefetch" href="/assets/js/35.b90c291b.js"><link rel="prefetch" href="/assets/js/36.853d11aa.js"><link rel="prefetch" href="/assets/js/37.fe79cc5b.js"><link rel="prefetch" href="/assets/js/38.aef7ef02.js"><link rel="prefetch" href="/assets/js/39.dca7aa67.js"><link rel="prefetch" href="/assets/js/4.37520176.js"><link rel="prefetch" href="/assets/js/40.d659d938.js"><link rel="prefetch" href="/assets/js/41.83aeacc5.js"><link rel="prefetch" href="/assets/js/42.610c5aca.js"><link rel="prefetch" href="/assets/js/43.e9222b3a.js"><link rel="prefetch" href="/assets/js/44.9858f816.js"><link rel="prefetch" href="/assets/js/45.b0f0f5f2.js"><link rel="prefetch" href="/assets/js/46.492b33ea.js"><link rel="prefetch" href="/assets/js/47.07c3328b.js"><link rel="prefetch" href="/assets/js/48.b2d7476f.js"><link rel="prefetch" href="/assets/js/49.9fd583ed.js"><link rel="prefetch" href="/assets/js/5.b259d54e.js"><link rel="prefetch" href="/assets/js/50.9e6ef79d.js"><link rel="prefetch" href="/assets/js/51.8c3776f7.js"><link rel="prefetch" href="/assets/js/52.92a4b980.js"><link rel="prefetch" href="/assets/js/53.3e72d3bc.js"><link rel="prefetch" href="/assets/js/54.e1e107ff.js"><link rel="prefetch" href="/assets/js/55.418768d6.js"><link rel="prefetch" href="/assets/js/56.95ca3ac0.js"><link rel="prefetch" href="/assets/js/57.ea7fb933.js"><link rel="prefetch" href="/assets/js/58.40c5610c.js"><link rel="prefetch" href="/assets/js/59.5af9d54f.js"><link rel="prefetch" href="/assets/js/6.70c0bce3.js"><link rel="prefetch" href="/assets/js/60.0c66c22f.js"><link rel="prefetch" href="/assets/js/61.05b88817.js"><link rel="prefetch" href="/assets/js/63.6ab28e82.js"><link rel="prefetch" href="/assets/js/7.8d26dacd.js"><link rel="prefetch" href="/assets/js/8.6beb7cbb.js"><link rel="prefetch" href="/assets/js/9.5015eb07.js"><link rel="prefetch" href="/assets/js/vuejs-paginate.92df942c.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e0c1612b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="dark:bg-gray-1000 bg-white dark:text-sepia text-gray-900" data-v-335698aa><header class="border-b-4 dark:border-green-700 border-primary" data-v-335698aa><div class="container mx-auto flex h-20 px-6 items-center"><a href="/" class="dark:text-green-700 text-primary text-3xl router-link-active">
+            Learn With Daniel
+        </a></div></header> <div class="container mx-auto px-6 md:px-16 py-8 max-w-screen-md" data-v-335698aa><div class="py-8 md:py-16" data-v-335698aa><div data-v-335698aa><span class="dark:bg-gray-800 bg-gray-100 px-3 py-1 mx-1 rounded-full uppercase text-xs font-medium dark:text-green-700 tracking-wider" data-v-335698aa>
+                    PHP
+                </span><span class="dark:bg-gray-800 bg-gray-100 px-3 py-1 mx-1 rounded-full uppercase text-xs font-medium dark:text-green-700 tracking-wider" data-v-335698aa>
+                    Laravel
+                </span><span class="dark:bg-gray-800 bg-gray-100 px-3 py-1 mx-1 rounded-full uppercase text-xs font-medium dark:text-green-700 tracking-wider" data-v-335698aa>
+                    scout
+                </span></div> <h1 class="dark:text-green-500 text-4xl md:text-6xl py-6" data-v-335698aa>Laravel Scout - Searching in relationships</h1> <p class="author text-sm" data-v-335698aa>
+                by <span class="text-base font-bold" data-v-335698aa>Daniel Loureiro</span>
+                on <time class="mr-3" data-v-335698aa>May 21, 2022</time> <span class="reading-time text-xs uppercase py-4 block md:inline-block md:py-9" data-v-335698aa><vp-icon size="1.5em" name="clock-best" class="inline-block" data-v-335698aa></vp-icon>
+                    4 min read
+                </span></p></div> <div class="post-wrap text-xl leading-10 pb-8" data-v-335698aa><div class="content__default" data-v-335698aa><p>Let's see how to search in the parent's fields using Laravel Scout and the database driver.
+</p> <p>Let's say you have this relationship: <code>users</code> x <code>cats</code>. Each user has many cats (a &quot;one-to-many&quot; relationship):</p> <div class="language-php extra-class"><pre class="language-php"><code><span class="token keyword">class</span> User <span class="token keyword">extends</span> <span class="token class-name">Model</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">cats</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token function">hasMany</span><span class="token punctuation">(</span><span class="token class-name static-context">Cat</span><span class="token operator">::</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="language-php extra-class"><pre class="language-php"><code><span class="token keyword">class</span> Cat <span class="token keyword">extends</span> <span class="token class-name">Model</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">user</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token function">belongsTo</span><span class="token punctuation">(</span><span class="token class-name static-context">User</span><span class="token operator">::</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Both models (users and cats) have a <code>name</code> field.</p> <p>Let's say we want to get all cats with <code>bob</code> in their names, using Laravel's Scout.</p> <p>The standard solution is to add this to the <code>Cat.php</code> model:</p> <div class="language-php extra-class"><pre class="language-php"><code><span class="token comment">// Cat.php</span>
+<span class="token keyword">use</span> <span class="token package">Searchable</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+  * Get the indexable data array for the model.
+  *
+  * @return array
+  */</span>
+<span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">toSearchableArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">[</span>
+        <span class="token string single-quoted-string">'name'</span> <span class="token operator">=&gt;</span> <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token property">name</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>And we search with <code>Cat::search('bob')-&gt;get()</code>.</p> <p>This solution works well, but what if we want to search in the <code>user</code> fields?</p> <h2 id="the-problem"><a href="#the-problem" class="header-anchor">#</a> The problem</h2> <p>Let's say we want to get cats owned by people with <code>bob</code> in their names.</p> <p>If you add this to the &quot;Cat&quot; model:</p> <div class="language-php extra-class"><pre class="language-php"><code><span class="token comment">// Cat.php</span>
+<span class="token keyword">use</span> <span class="token package">Searchable</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+  * Get the indexable data array for the model.
+  *
+  * @return array
+  */</span>
+<span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">toSearchableArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// we only need to return keys for the database driver</span>
+    <span class="token keyword">return</span> <span class="token punctuation">[</span>
+        <span class="token string single-quoted-string">'name'</span> <span class="token operator">=&gt;</span> <span class="token string single-quoted-string">''</span><span class="token punctuation">,</span> <span class="token comment">// cat's name</span>
+        <span class="token string single-quoted-string">'users.name'</span> <span class="token operator">=&gt;</span> <span class="token string single-quoted-string">''</span><span class="token punctuation">,</span> <span class="token comment">// owner's name</span>
+    <span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>It won't work. You will get this exception:</p> <div class="language- extra-class"><pre class="language-text"><code>SQLSTATE[42S22]: Column not found: 1054 Unknown column 'users.name' in 'where clause'
+
+SQL:
+select `cats`.*
+from `cats`
+where (`cats`.`name` like %bob% or `users`.`name` like %bob%)
+</code></pre></div><p>Clearly, the SQL is missing the <code>users</code> table. But how to add it?</p> <p>Doing a <code>Cat::join(...)-&gt;search('bob')</code> will throw an exception, same for <code>Cat::search(...)-&gt;join(...)</code>.</p> <p>The question is: <strong>How to search in the parent attributes?</strong> And by &quot;parent&quot; I mean the &quot;belongsTo&quot; model.</p> <h2 id="solution"><a href="#solution" class="header-anchor">#</a> Solution</h2> <p>The <code>query</code> method allows for modifing the search query. Use it to inject a <code>join</code> clause:</p> <div class="language-php extra-class"><pre class="language-php"><code><span class="token class-name static-context">Cat</span><span class="token operator">::</span><span class="token function">search</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'bob'</span><span class="token punctuation">)</span><span class="token operator">-&gt;</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token variable">$builder</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token variable">$builder</span><span class="token operator">-&gt;</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'users'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'cats.user_id'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'='</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'users.id'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token operator">-&gt;</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>This generates the proper query:</p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token keyword">SELECT</span> <span class="token punctuation">`</span>cats<span class="token punctuation">`</span><span class="token punctuation">.</span><span class="token operator">*</span>
+<span class="token keyword">FROM</span> <span class="token punctuation">`</span>cats<span class="token punctuation">`</span>
+<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> <span class="token punctuation">`</span>users<span class="token punctuation">`</span> <span class="token keyword">on</span> <span class="token punctuation">`</span>cats<span class="token punctuation">`</span><span class="token punctuation">.</span><span class="token punctuation">`</span>genre_id<span class="token punctuation">`</span> <span class="token operator">=</span> <span class="token punctuation">`</span>users<span class="token punctuation">`</span><span class="token punctuation">.</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span>
+<span class="token keyword">WHERE</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>cats<span class="token punctuation">`</span><span class="token punctuation">.</span><span class="token punctuation">`</span>name<span class="token punctuation">`</span> <span class="token operator">LIKE</span> <span class="token string">'%bob%'</span> <span class="token operator">or</span> <span class="token punctuation">`</span>users<span class="token punctuation">`</span><span class="token punctuation">.</span><span class="token punctuation">`</span>name<span class="token punctuation">`</span> <span class="token operator">LIKE</span> <span class="token string">'%bob%'</span><span class="token punctuation">)</span>
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> <span class="token punctuation">`</span>id<span class="token punctuation">`</span> <span class="token keyword">desc</span>
+</code></pre></div><h2 id="automatically-adding-the-join-clause-on-all-searches"><a href="#automatically-adding-the-join-clause-on-all-searches" class="header-anchor">#</a> Automatically adding the JOIN clause on all searches</h2> <p>To avoid having to write <code>-&gt;join(...)</code> on every search call, we can make Scout automatically add the JOIN:</p> <div class="language-php extra-class"><pre class="language-php"><code><span class="token comment">// Cat.php</span>
+<span class="token comment">/**
+ * Overrides the &quot;search&quot; method to inject a `join` to the relationships.
+ */</span>
+<span class="token keyword">use</span> <span class="token package">Searchable</span> <span class="token punctuation">{</span>
+    <span class="token class-name static-context">Searchable</span><span class="token operator">::</span>search <span class="token keyword">as</span> parentSearch<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/**
+ * Perform a search against the model's indexed data.
+ *
+ * @param  string  $query
+ * @param  \Closure  $callback
+ * @return \Laravel\Scout\Builder
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function">search</span><span class="token punctuation">(</span><span class="token variable">$query</span> <span class="token operator">=</span> <span class="token string single-quoted-string">''</span><span class="token punctuation">,</span> <span class="token variable">$callback</span> <span class="token operator">=</span> <span class="token constant">null</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword static-context">static</span><span class="token operator">::</span><span class="token function">parentSearch</span><span class="token punctuation">(</span><span class="token variable">$query</span><span class="token punctuation">,</span> <span class="token variable">$callback</span><span class="token punctuation">)</span><span class="token operator">-&gt;</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token variable">$builder</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token variable">$builder</span><span class="token operator">-&gt;</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'users'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'cats.user_id'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'='</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'users.id'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Now, we just call <code>Cat::search('bob')-&gt;get()</code> to search for cats named &quot;bob&quot; or with owners named &quot;bob&quot;.</p> <h2 id="final-code"><a href="#final-code" class="header-anchor">#</a> Final code</h2> <div class="language-php extra-class"><pre class="language-php"><code><span class="token keyword">class</span> Cat <span class="token keyword">extends</span> <span class="token class-name">Model</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">/**
+     * Overrides the &quot;search&quot; method to inject a `join` to the relationships.
+     */</span>
+    <span class="token keyword">use</span> <span class="token package">Searchable</span> <span class="token punctuation">{</span>
+        <span class="token class-name static-context">Searchable</span><span class="token operator">::</span>search <span class="token keyword">as</span> parentSearch<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/**
+     * Get the indexable data array for the model.
+    *
+    * @return array
+    */</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">toSearchableArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// no need to return values as the database engine only uses the array keys</span>
+        <span class="token keyword">return</span> <span class="token punctuation">[</span>
+            <span class="token string single-quoted-string">'name'</span> <span class="token operator">=&gt;</span> <span class="token string single-quoted-string">''</span><span class="token punctuation">,</span> <span class="token comment">// cat's name</span>
+            <span class="token string single-quoted-string">'users.name'</span> <span class="token operator">=&gt;</span> <span class="token string single-quoted-string">''</span><span class="token punctuation">,</span> <span class="token comment">// owner's name</span>
+        <span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/**
+     * Perform a search against the model's indexed data.
+     *
+     * @param  string  $query
+     * @param  \Closure  $callback
+     * @return \Laravel\Scout\Builder
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function">search</span><span class="token punctuation">(</span><span class="token variable">$query</span> <span class="token operator">=</span> <span class="token string single-quoted-string">''</span><span class="token punctuation">,</span> <span class="token variable">$callback</span> <span class="token operator">=</span> <span class="token constant">null</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword static-context">static</span><span class="token operator">::</span><span class="token function">parentSearch</span><span class="token punctuation">(</span><span class="token variable">$query</span><span class="token punctuation">,</span> <span class="token variable">$callback</span><span class="token punctuation">)</span><span class="token operator">-&gt;</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token variable">$builder</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token variable">$builder</span><span class="token operator">-&gt;</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'users'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'cats.user_id'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'='</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'users.id'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/**
+     * Relationships
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">user</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token function">belongsTo</span><span class="token punctuation">(</span><span class="token class-name static-context">User</span><span class="token operator">::</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>And search with:</p> <div class="language-php extra-class"><pre class="language-php"><code><span class="token class-name static-context">Cat</span><span class="token operator">::</span><span class="token function">search</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'bob'</span><span class="token punctuation">)</span><span class="token operator">-&gt;</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></div></div> <hr class="my-12" data-v-335698aa> <div data-v-335698aa><h2 class="text-xl md:text-3xl pb-10 text-center" data-v-335698aa>Comments</h2> <!----></div></div> <footer class="py-4 bg-gray-800" data-v-335698aa><p class="text-center text-gray-600 text-xs">Copyright 2022 - Daniel Loureiro</p></footer></div><div class="global-ui"><!----><!----><!----></div></div>
+    <script src="/assets/js/app.5632ea00.js" defer></script><script src="/assets/js/3.9e1cc85f.js" defer></script><script src="/assets/js/62.483e5481.js" defer></script><script src="/assets/js/22.2ffb8c95.js" defer></script>
+  </body>
+</html>
