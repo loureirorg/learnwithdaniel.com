@@ -23,6 +23,8 @@ jobs:
 
       - name: Build VuePress site
         run: yarn build
+        env:
+          NODE_OPTIONS: --openssl-legacy-provider
 
       - name: Upload to web3.storage
         uses: web3-storage/add-to-web3@v2
