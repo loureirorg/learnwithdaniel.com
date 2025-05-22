@@ -27,7 +27,7 @@ jobs:
           NODE_OPTIONS: --openssl-legacy-provider
 
       - name: Upload to web3.storage
-      - uses: web3-storage/add-to-web3@v2
+        uses: web3-storage/add-to-web3@v2
         with:
           web3_token: ${{ secrets.WEB3_STORAGE_TOKEN }}
           path_to_add: ./docs/.vuepress/dist
